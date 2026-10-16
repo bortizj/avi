@@ -1,5 +1,5 @@
 # Automatic visual inspection
-### Author: Benhur Ortiz-Jaramillo 2026
+### Author: Benhur Ortiz-Jaramillo
 ### Year: 2026
 
 Automatic visual inspection (AVI) has become a critical component in modern manufacturing and quality control processes. AVI enables the rapid and accurate detection of defects, inconsistencies, and non-compliance with quality standards by using imaging technologies, computational algorithms and robotics. AVI not only enhances product reliability and safety but also significantly reduces operational costs and human error. The scope of AVI spans various industries, including food processing, electronics, masonry, automotive, and pharmaceuticals, among others. Therefore, understanding AVI principles, applications, and benefits is essential for modern industrial automation applications.
@@ -44,27 +44,27 @@ AVI is important because it drives quality assurance, reduces scrap rates, preve
 
 #### Automated fabric inspection and packing
 
-⚠️WARNING: Placeholder for the example 1 description and image.⚠️
+To see how AVI works in practice in textile manufacturing, we can look at Suntech's automated production line, which replaces traditional manual inspection and sorting with a integrated data-driven workflow. First, a visual inspection system uses cameras, controlled lighting, and machine learning to catch fabric flaws in real-time, recording their exact location and severity. Alongside it, another system keeps the material moving by automating edge alignment, tension control, cutting, sampling, and roll-end taping. Afterwards, an automated labeling and sorting system adds tracking barcodes and routes the rolls into the correct quality tiers. From there, a packaging station wraps the rolls in protective plastic. Finally, robotic stackers handle the transport, while linking shop-floor data directly to enterprise software for complete tracking and analytics.
 
 [![Watch the video](https://img.youtube.com/vi/7_0e6BIYZ6M/mqdefault.jpg)](https://youtu.be/7_0e6BIYZ6M)
 
-#### Automated inline quality control system
-
-⚠️WARNING: Placeholder for the example 2 description and image.⚠️
-
-[![Watch the video](https://vumbnail.com/1019721995_medium.jpg)](https://vimeo.com/1019721995)
-
 #### Automated vision weighing in egg grading
 
-⚠️WARNING: Placeholder for the example 3 description and image.⚠️
+To see how AVI works in practice in food inspection, we can examine Sanovo's automated egg grading workflow, which replaces traditional mechanical scales and physical touch points with a contactless optical module. First, a vision and illumination system uses a built-in sensor to detect incoming eggs while an array of cameras captures detailed images per egg for complete surface coverage. Alongside this optical capture, machine learning algorithms determine the weight of each egg optically while simultaneously analyzing every surface detail in real time to isolate anomalies like hairline cracks and liquid leakers. Finally, a control and classification system allows users to fine-tune detection thresholds adjusting grading parameters for both quality and weight sorting.
 
 [![Watch the video](https://img.youtube.com/vi/MXmqqQa043I/mqdefault.jpg)](https://youtu.be/MXmqqQa043I)
 
 #### Indoor autonomous inspection
 
-⚠️WARNING: Placeholder for the example 4 description and image.⚠️
+To see how autonomous inspection works in practice, we can look at RaSpect's system which replaces traditional manual facility walkthroughs with an integrated data-driven workflow. First, an autonomous navigation and positioning system uses SLAM technology and path planning to build real-time spatial maps. Alongside it, a sensing and visual data acquisition system equips the robot with cameras to capture visual records and structural data from every corner of the facility. Afterwards, a processing system uploads the captured datasets to cloud environments, where machine learning algorithms analyze the information to automatically flag structural defects, wear-and-tear anomalies, and safety hazards. From there, an enterprise and analytics integration platform turns these insights into standardized, repeatable digital surveys that enable long-term trend analysis and simplify compliance checks.
 
 [![Watch the video](https://img.youtube.com/vi/cVAnaEyF7rw/mqdefault.jpg)](https://youtu.be/cVAnaEyF7rw)
+
+#### Automated inline quality control system
+
+To see how automated inline quality control works in practice, we can look at the AM-Flow AM-Quality system, which replaces traditional manual sampling with a fully integrated scanning workflow. First, a 3D optical sensing system uses laser line profiles to capture complete surface geometry. Simultaneously, a digital inspection engine processes the data, comparing the 3D point-cloud against the reference CAD file to generate a deviation map, calculate dimensional variances, and execute immediate pass/fail evaluations. Finally, a robust reporting and enterprise software ecosystem generates comprehensive per-part metrology reports for complete audit trails.
+
+[![Watch the video](https://vumbnail.com/1019721995_medium.jpg)](https://vimeo.com/1019721995)
 
 ## Comparison between manual and automatic visual inspection
 
