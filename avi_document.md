@@ -10,33 +10,37 @@ The purpose of this document is to provide an overview of AVI, including its def
 
 ### Classical visual inspection
 
+![human-inspector](assets/human-inspector.png)
+
 Before defining what automatic visual inspection involves, it is important to understand what human-based inspection involves (classical visual inspection). Visual inspection is the process of examining products, components, or structures using the human eye; often aided by lighting, magnification, or simple hand tools; to detect flaws, defects, or non-compliance with quality standards. Below we list a few examples of classical visual inspection tasks across different industries.
 
 #### Food processing and sorting
 
 ![eggs-inspection](assets/eggs-inspection.png)
 
-Quality control sorters (line workers) stand alongside moving conveyor belts to manually inspect raw or semi-processed agricultural goods, e.g., fresh fruits, root vegetables, nuts,  bakery items. Their task is to scan for and discard bruised, rotting, or misshapen produce, alongside foreign contaminants, e.g., stones, stems, dirt clumps, or pieces of field debris. Such tasks are common in agribusiness, food packaging plants, frozen food processing, snack food manufacturing, and catering suppliers.
+Quality control sorters (line workers) stand alongside moving conveyor belts to manually inspect raw or semi-processed agricultural goods, e.g., fresh fruits, root vegetables, nuts,  bakery items. Their task is to scan for and discard bruised, rotting, or misshapen produce, alongside foreign contaminants, e.g., stones, stems, dirt clumps, or pieces of field debris. Such tasks are common in agribusiness, food packaging plants, frozen food processing, snack food manufacturing, and catering suppliers. The image in this example was generated using Gemini AI.
 
 #### Plastic parts inspection
 
 ![3d-print-inspection](assets/3d-print-inspection.png)
 
-Machine operators and / or quality control technicians visually inspect molded plastic components, e.g., automotive interior trim, appliance housings, plastic containers, or toys. This is typically done as the produced goods emerge from injection molding presses, extrusion lines or 3D printers. Inspectors check for surface defects such as excess plastic, sink marks, incomplete fills, flow lines, burn marks. Such tasks are common in automotive manufacturing, consumer electronics, toy production, medical device disposable packaging, and plastic injection molding services.
+Machine operators and / or quality control technicians visually inspect molded plastic components, e.g., automotive interior trim, appliance housings, plastic containers, or toys. This is typically done as the produced goods emerge from injection molding presses, extrusion lines or 3D printers. Inspectors check for surface defects such as excess plastic, sink marks, incomplete fills, flow lines, burn marks. Such tasks are common in automotive manufacturing, consumer electronics, toy production, medical device disposable packaging, and plastic injection molding services. The image in this example was generated using Gemini AI.
 
 #### Textile and fabric quality grading
 
 ![textile-inspection](assets/textile-inspection.png)
 
-Textile examiners feed large rolls of woven or knitted fabric through an illuminated inspection machine or board. As the fabric moves past at eye level, inspectors scan for irregularities such as, stains, missing ends, yarn lumps, and shade variations. They measure flaw sizes and apply standardized penalty points to determine if a roll passes quality thresholds. Such tasks are common in apparel and garment manufacturing, home textiles (bedding, curtains, floor coverings), industrial textile filters, and fabric distributors.
+Textile examiners feed large rolls of woven or knitted fabric through an illuminated inspection machine or board. As the fabric moves past at eye level, inspectors scan for irregularities such as, stains, missing ends, yarn lumps, and shade variations. They measure flaw sizes and apply standardized penalty points to determine if a roll passes quality thresholds. Such tasks are common in apparel and garment manufacturing, home textiles (bedding, curtains, floor coverings), industrial textile filters, and fabric distributors. The image in this example was generated using Gemini AI.
 
 #### Structural infrastructure inspection
 
 ![structural-inspection](assets/structural-inspection.png)
 
-Civil engineers and certified structural inspectors conduct visual surveys of critical infrastructure, e.g., concrete bridges, highway overpasses, tunnels, and retaining walls. Using specialized tools like crack-width rulers, inspection hammers, binoculars. They inspect surfaces for signs of structural cracking, rust bleeding from internal rebar corrosion, and joint deterioration. Such tasks are common in civil engineering consulting, municipal public works, state/national transportation departments, structural maintenance contractors, and commercial facility management.
+Civil engineers and certified structural inspectors conduct visual surveys of critical infrastructure, e.g., concrete bridges, highway overpasses, tunnels, and retaining walls. Using specialized tools like crack-width rulers, inspection hammers, binoculars. They inspect surfaces for signs of structural cracking, rust bleeding from internal rebar corrosion, and joint deterioration. Such tasks are common in civil engineering consulting, municipal public works, state/national transportation departments, structural maintenance contractors, and commercial facility management. The image in this example was generated using Gemini AI.
 
 ### Automatic visual inspection
+
+![avi-inspector](assets/avi-inspector.png)
 
 AVI is an industrial quality-control methodology that integrates specialized illumination, optical imaging, and computational algorithms to autonomously, objectively, and continuously evaluate manufactured products for defects, dimensional compliance, and surface anomalies at high production speeds. 
 
@@ -46,29 +50,29 @@ AVI is important because it drives quality assurance, reduces scrap rates, preve
 
 To see how AVI works in practice in textile manufacturing, we can look at Suntech's automated production line, which replaces traditional manual inspection and sorting with a integrated data-driven workflow. First, a visual inspection system uses cameras, controlled lighting, and machine learning to catch fabric flaws in real-time, recording their exact location and severity. Alongside it, another system keeps the material moving by automating edge alignment, tension control, cutting, sampling, and roll-end taping. Afterwards, an automated labeling and sorting system adds tracking barcodes and routes the rolls into the correct quality tiers. From there, a packaging station wraps the rolls in protective plastic. Finally, robotic stackers handle the transport, while linking shop-floor data directly to enterprise software for complete tracking and analytics.
 
-[![Watch the video](https://img.youtube.com/vi/7_0e6BIYZ6M/mqdefault.jpg)](https://youtu.be/7_0e6BIYZ6M)
+[![Watch the video](https://img.youtube.com/vi/7_0e6BIYZ6M/sddefault.jpg)](https://youtu.be/7_0e6BIYZ6M)
 
 #### Automated vision weighing in egg grading
 
 To see how AVI works in practice in food inspection, we can examine Sanovo's automated egg grading workflow, which replaces traditional mechanical scales and physical touch points with a contactless optical module. First, a vision and illumination system uses a built-in sensor to detect incoming eggs while an array of cameras captures detailed images per egg for complete surface coverage. Alongside this optical capture, machine learning algorithms determine the weight of each egg optically while simultaneously analyzing every surface detail in real time to isolate anomalies like hairline cracks and liquid leakers. Finally, a control and classification system allows users to fine-tune detection thresholds adjusting grading parameters for both quality and weight sorting.
 
-[![Watch the video](https://img.youtube.com/vi/MXmqqQa043I/mqdefault.jpg)](https://youtu.be/MXmqqQa043I)
-
-#### Indoor autonomous inspection
-
-To see how autonomous inspection works in practice, we can look at RaSpect's system which replaces traditional manual facility walkthroughs with an integrated data-driven workflow. First, an autonomous navigation and positioning system uses SLAM technology and path planning to build real-time spatial maps. Alongside it, a sensing and visual data acquisition system equips the robot with cameras to capture visual records and structural data from every corner of the facility. Afterwards, a processing system uploads the captured datasets to cloud environments, where machine learning algorithms analyze the information to automatically flag structural defects, wear-and-tear anomalies, and safety hazards. From there, an enterprise and analytics integration platform turns these insights into standardized, repeatable digital surveys that enable long-term trend analysis and simplify compliance checks.
-
-[![Watch the video](https://img.youtube.com/vi/cVAnaEyF7rw/mqdefault.jpg)](https://youtu.be/cVAnaEyF7rw)
+[![Watch the video](https://img.youtube.com/vi/MXmqqQa043I/sddefault.jpg)](https://youtu.be/MXmqqQa043I)
 
 #### Automated inline quality control system
 
 To see how automated inline quality control works in practice, we can look at the AM-Flow AM-Quality system, which replaces traditional manual sampling with a fully integrated scanning workflow. First, a 3D optical sensing system uses laser line profiles to capture complete surface geometry. Simultaneously, a digital inspection engine processes the data, comparing the 3D point-cloud against the reference CAD file to generate a deviation map, calculate dimensional variances, and execute immediate pass/fail evaluations. Finally, a robust reporting and enterprise software ecosystem generates comprehensive per-part metrology reports for complete audit trails.
 
-[![Watch the video](https://vumbnail.com/1019721995_medium.jpg)](https://vimeo.com/1019721995)
+[![Watch the video](https://vumbnail.com/1019721995_large.jpg)](https://vimeo.com/1019721995)
+
+#### Indoor autonomous inspection
+
+To see how autonomous inspection works in practice, we can look at RaSpect's system which replaces traditional manual facility walkthroughs with an integrated data-driven workflow. First, an autonomous navigation and positioning system uses SLAM technology and path planning to build real-time spatial maps. Alongside it, a sensing and visual data acquisition system equips the robot with cameras to capture visual records and structural data from every corner of the facility. Afterwards, a processing system uploads the captured datasets to cloud environments, where machine learning algorithms analyze the information to automatically flag structural defects, wear-and-tear anomalies, and safety hazards. From there, an enterprise and analytics integration platform turns these insights into standardized, repeatable digital surveys that enable long-term trend analysis and simplify compliance checks.
+
+[![Watch the video](https://img.youtube.com/vi/cVAnaEyF7rw/hqdefault.jpg)](https://youtu.be/cVAnaEyF7rw)
 
 ## Comparison between manual and automatic visual inspection
 
-The table below summarizes the key differences between manual visual inspection performed by human operators and automatic visual inspection (AVI) systems across various dimensions of performance, cost, and adaptability. The spider plot below shows a visual comparison of these dimensions, highlighting the strengths and weaknesses of each approach.
+The table below summarizes the key differences between manual visual inspection performed by human operators and automatic visual inspection (AVI) systems across various dimensions of performance, cost, and adaptability. The spider plot below shows a visual comparison of these dimensions, highlighting the strengths and weaknesses of each approach. The plot shows the number of advantages that AVI systems have over manual inspection. The numerical scores in the table were estimated based on observations of past projects and expert judgment.
 
 | **Feature** | **Manual inspection (Human)** | **Score (0-5)** | **Automatic visual inspection (AVI)** | **Score (0-5)** |
 | :--- | :--- | :---: | :--- | :---: |
@@ -84,9 +88,13 @@ The table below summarizes the key differences between manual visual inspection 
 
 ## Visual inspection design process
 
-(1) Image capture -> (2) System calibration -> (3) Image enhancement \& Pre-processing -> (4) Region of Interest \& Object detection -> (5) Feature extraction \& Anomaly detection -> (6) Decision fusion \& Post-processing -> (7) Action \& closed feedback loop
+![design-process](assets/design-process.png)
 
-⚠️WARNING: Place holder for the visual inspection design process.⚠️
+The AVI process relies on a model that transforms physical manufacturing components into actionable quality decisions. This model is shown in the figure above. The lifecycle begins with (1) image capture, using synchronized industrial cameras, custom lenses, and targeted illumination to convert parts into digital twins. Next, (2) system calibration addresses camera alignment, lighting adjustment, and the correction of geometric to guarantee cross-station integrity. Following acquisition, the digital data is (3) pre-processed through spatial filtering, contrast normalization, and precise alignment to suppress environmental disturbances.
+
+Afterwards, (4) region of interest isolation and object detection separate the target product from its background using segmentation algorithms. Thereafter, (5) feature extraction and anomaly detection modules identify known flaws and anomalies through supervised and unsupervised machine learning models. The resulting data is (6) post-processed and fused with other sensor information for decision making to issue definitive classifications of accept, reject, or escalate. Then, the (7) action and feedback phase coordinates sorting gates, logs metadata in quality tracking frameworks, and utilizes human-in-the-loop interventions to update and retrain models. The process normally also includes a (S)upporting step named model sandbox for testing and validating new algorithms before deployment.
+
+In the following sections, each step of the visual inspection design process is detailed, providing insights into the methodologies, tools, and considerations involved.
 
 ### (1) Image capture
 
@@ -115,3 +123,7 @@ The table below summarizes the key differences between manual visual inspection 
 ### (7) Action and closed feedback loop
 
 ⚠️WARNING: Place holder for the feedback loop design process.⚠️
+
+### (S) Model sandbox
+
+⚠️WARNING: Place holder for the model sandbox design process.⚠️
