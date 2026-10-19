@@ -23,6 +23,12 @@ The purpose of this document is to serve as reading material on how to design an
 | MES / ERP | Manufacturing execution system / enterprise resource planning, i.e., software that tracks production and business data. |
 | Human-in-the-loop | Design in which humans review machine decisions and feed corrections back into the system. |
 | Cycle (takt) time | Time available to process one part. |
+| Intrinsic parameters | Camera parameters that describe the camera itself, i.e., the focal length, the principal point, and the lens distortion. |
+| Extrinsic parameters | Rotation and translation that describe the pose of a camera relative to a world, robot, or other camera coordinate system. |
+| Reprojection error | Distance between the detected calibration points and the points predicted by the calibrated camera model. |
+| Flat-field correction | Pixel-wise correction with dark and flat reference images that removes sensor non-uniformity, vignetting, and uneven illumination. |
+| Golden part | Reference part with known dimensions and known defects, used to verify an inspection system. |
+| Gage R&R | Gauge repeatability and reproducibility study that measures how much of the tolerance is consumed by the measurement system [48]. |
 
 ## Definitions and purpose
 
@@ -92,7 +98,10 @@ Please check out the detailed documentation here:
 
 ### (2) System calibration
 
-⚠️WARNING: Place holder for the system calibration design process.⚠️
+System calibration is the step where the captured images are related to the real world, and its objective is to normalize geometry, scale, and color, i.e., to make sure that positions can be converted into millimeters and that gray values and colors mean the same on every camera, in every part of the image, and on every day.
+
+Please check out the detailed documentation here:
+[(2) System calibration](system_calibration.md)
 
 ### (3) Image enhancement and pre-processing
 
@@ -150,7 +159,26 @@ The following table summarizes the design questions of step (1) together with ty
 | Is 2D enough, or is 3D needed? | 3D when heights, volumes, or CAD deviations matter; laser triangulation or structured light for precision [56, 57]. |
 | How is the camera chosen and verified? | EMVA 1288 data for 2D cameras [81]; VDI/VDE 2634 tests for optical 3D systems [90]. |
 
-⚠️WARNING: Place holder for the best practices of steps (2) to (S).⚠️
+#### System calibration checklist
+
+The following table summarizes the design questions of step (2) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which quantities does the system report? | Positions and dimensions need geometric calibration and a pixel-to-mm mapping; fixed gray-value thresholds need flat-field correction; color decisions need color calibration. |
+| Is the camera model fitted correctly? | Planar target at the working distance with fixed focus and aperture, covering the whole FOV and tilted by about 30 to 45°, with at least 10 to 15 views; low RMS reprojection error [94, 95]. |
+| Is the reference traceable? | Certified glass or ceramic target, gauge blocks, or golden parts with certificates; calibration records are kept [96, 110]. |
+| Is a single mm/px factor enough? | Only after distortion correction, for a plane perpendicular to the optical axis at a fixed distance; otherwise a homography, a telecentric lens, or 3D measurement [74, 93]. |
+| Is the measurement capable? | Gage R&R with %GRR below 10% (10 to 30% conditionally); resolution of at least one tenth of the tolerance [48]. |
+| Are the camera settings fixed? | Auto-exposure, auto-gain, and auto white balance off; trigger delay, strobe inside the exposure, motion blur, and trigger-to-image counts checked at line speed [83]. |
+| Are line-scan pixels square? | Encoder step equal to the pixel size across the line; scale in the direction of motion calibrated with markers at a known distance [97]. |
+| Is the image uniform and stable? | Dark-frame and flat-field correction [98]; constant-current lights, warm-up, and a monitored reference patch [113]. |
+| Are colors comparable between cameras and days? | Fixed white balance and a color correction matrix fitted to a reference chart; ΔE00 tolerance agreed per product [99, 101]. |
+| Are all sensors in one coordinate system? | Common calibration target for multiple cameras, hand-eye calibration for robots, and an encoder-to-image mapping for conveyors [95, 117]. |
+| Is the 3D sensor verified? | Factory intrinsic calibration plus user extrinsic calibration [103]; acceptance and reverification tests according to ISO 10360-13 [104]. |
+| When is the system recalibrated? | Verification at every shift with a golden part or reference target; full recalibration after any change of the optical chain, a collision, or a failed verification [95, 110]. |
+
+⚠️WARNING: Place holder for the best practices of steps (3) to (S).⚠️
 
 ### Conclusions
 
