@@ -49,7 +49,7 @@ The purpose of this document is to serve as reading material on how to design an
 In this section we define manual (classical) and automatic visual inspection, each followed by a few industrial examples. The examples are paired, i.e., each automated example solves the same inspection task as one of the manual examples.
 
 Please check out the detailed definitions and purpose here: 
-[Definitions and purpose](definitions.md)
+[Definitions and purpose](01_definitions.md)
 
 ## Comparison between manual and automatic visual inspection
 
@@ -108,40 +108,40 @@ The process is iterative, since problems found in later steps often require chan
 Image capture is the step where the physical part becomes data, and its objective is to acquire visual data with a high signal-to-noise ratio, i.e., images or point clouds in which the defects of interest stand out clearly from the part, the background, and the sensor noise.
 
 Please check out the detailed image capture step process here: 
-[(1) Image capture](image_capture.md)
+[(1) Image capture](02_image_capture.md)
 
 ### (2) System calibration
 
 System calibration is the step where the captured images are related to the real world, and its objective is to normalize geometry, scale, and color, i.e., to make sure that positions can be converted into millimeters and that gray values and colors mean the same on every camera, in every part of the image, and on every day.
 
 Please check out the detailed system calibration step process here:
-[(2) System calibration](system_calibration.md)
+[(2) System calibration](03_system_calibration.md)
 
 ### (3) Image enhancement and pre-processing
 
 Image enhancement and pre-processing is the step where the calibrated images are prepared for analysis, and its objective is to enhance contrast and remove noise, i.e., to make the defects and the edges to be measured stand out from the sensor noise, the shading, and the texture of the part, without removing the defects themselves.
 
-Please check out the detailed image enhancement and pre-processing step process here: [(3) Image enhancement and pre-processing](image_enhancement.md)
+Please check out the detailed image enhancement and pre-processing step process here: [(3) Image enhancement and pre-processing](04_image_enhancement.md)
 
 ### (4) Region of interest and object detection
 
-⚠️WARNING: Place holder for the object detection design process.⚠️
+Please check out the detailed object detection step process here: [(4) Region of interest and object detection](05_object_detection.md)
 
-### (5) Feature extraction and anomaly detection 
+### (5) Feature extraction and anomaly detection
 
-⚠️WARNING: Place holder for the anomaly detection design process.⚠️
+Please check out the detailed anomaly detection step process here: [(5) Feature extraction and anomaly detection](06_anomaly_detection.md)
 
 ### (6) Decision fusion and post-processing 
 
-⚠️WARNING: Place holder for the decision fusion design process.⚠️
+Please check out the detailed decision fusion step process here: [(6) Decision fusion and post-processing](07_decision_fusion.md)
 
 ### (7) Action and closed feedback loop
 
-⚠️WARNING: Place holder for the feedback loop design process.⚠️
+Please check out the detailed action step process here: [(7) Action and closed feedback loop](08_action.md)
 
 ### (S) Model sandbox
 
-⚠️WARNING: Place holder for the model sandbox design process.⚠️
+Please check out the detailed model sandbox step process here: [(S) Model sandbox](09_model_sandbox.md)
 
 ## Past projects overview
 
@@ -164,7 +164,7 @@ The open problems section is still a placeholder; the following items from step 
 ### Best practices
 
 Please check out the detailed best practices here: 
-[Best practices](best_practices.md)
+[Best practices](10_best_practices.md)
 
 ### Conclusions
 
@@ -173,4 +173,4 @@ Please check out the detailed best practices here:
 ## References
 
 Please check out the detailed references here: 
-[References](references.md)
+[References](00_references.md)
