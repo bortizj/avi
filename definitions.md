@@ -4,7 +4,7 @@ In this section we define manual (classical) and automatic visual inspection, ea
 
 ## Classical visual inspection
 
-![human-inspector](assets/human-inspector.png)
+![human-inspector](assets/definitions/human-inspector.png)
 
 *Figure 1. The human inspector as an inspection system, where the eye senses, the brain decides, and the hands act.*
 
@@ -16,7 +16,7 @@ Manual inspection is typically done in two ways, i.e., 100% inspection, where ev
 
 ### Food and egg inspection and sorting
 
-![eggs-inspection](assets/eggs-inspection.png)
+![eggs-inspection](assets/definitions/eggs-inspection.png)
 
 *Figure 2. Manual egg grading on a conveyor with typical defects such as rough shells, blood spots, and soft shells. The image in this example was generated using Gemini AI.*
 
@@ -24,7 +24,7 @@ Quality control sorters (line workers) stand alongside moving conveyor belts to 
 
 ### Plastic parts inspection
 
-![3d-print-inspection](assets/3d-print-inspection.png)
+![3d-print-inspection](assets/definitions/3d-print-inspection.png)
 
 *Figure 3. Manual inspection of plastic parts with typical defects such as excess plastic (flash), sink marks, and burn marks. The image in this example was generated using Gemini AI.*
 
@@ -32,7 +32,7 @@ Machine operators and / or quality control technicians visually inspect plastic 
 
 ### Textile and fabric quality grading
 
-![textile-inspection](assets/textile-inspection.png)
+![textile-inspection](assets/definitions/textile-inspection.png)
 
 *Figure 4. Manual fabric inspection on an illuminated inspection machine with typical defects such as stains, missing ends, and yarn lumps. The image in this example was generated using Gemini AI.*
 
@@ -40,7 +40,7 @@ Textile examiners feed large rolls of woven or knitted fabric through an illumin
 
 ### Structural infrastructure inspection
 
-![structural-inspection](assets/structural-inspection.png)
+![structural-inspection](assets/definitions/structural-inspection.png)
 
 *Figure 5. Visual inspection of a concrete and steel structure with typical defects such as cracks, corrosion, and deflection. The image in this example was generated using Gemini AI.*
 
@@ -48,7 +48,7 @@ Civil engineers and certified structural inspectors conduct visual surveys of cr
 
 ### Pharmaceutical injectables inspection
 
-![vial-inspection](assets/vial-inspection.png)
+![vial-inspection](assets/definitions/vial-inspection.png)
 
 *Figure 6. Manual inspection of injectable vials against black and white backgrounds with typical defects such as particles, glass cracks, and wrong fill level. The image in this example was generated using Gemini AI.*
 
@@ -56,7 +56,7 @@ Every container of an injectable drug must be inspected before release, as requi
 
 ### Electronic assembly inspection
 
-![pcb-inspection](assets/pcb-inspection.png)
+![pcb-inspection](assets/definitions/pcb-inspection.png)
 
 *Figure 7. Manual inspection of printed circuit board assemblies under a magnifier with typical defects such as solder bridges, tombstoned components, and insufficient solder. The image in this example was generated using Gemini AI.*
 
@@ -64,7 +64,7 @@ Electronics inspectors check printed circuit board assemblies (PCBAs) after sold
 
 ### Automotive paint inspection
 
-![paint-inspection](assets/paint-inspection.png)
+![paint-inspection](assets/definitions/paint-inspection.png)
 
 *Figure 8. Manual inspection of a painted car body in a light tunnel with typical defects such as dirt inclusions, craters, and orange peel. The image in this example was generated using Gemini AI.*
 
@@ -72,7 +72,7 @@ Paint inspectors check every painted car body before final assembly. As the body
 
 ## Automatic visual inspection
 
-![avi-inspector](assets/avi-inspector.png)
+![avi-inspector](assets/definitions/avi-inspector.png)
 
 *Figure 9. The AVI system, where cameras sense, processors decide, and robotic components act.*
 

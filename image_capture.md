@@ -10,7 +10,7 @@ The requirements defined before step (1) [49] fix the first numbers of the captu
 
 Illumination is the most powerful design tool in AVI, because the same part can show a defect as dark, bright, or invisible, depending only on where the light comes from [53]. The geometry of the light relative to the camera decides which part of the reflected light reaches the lens. In bright-field lighting, the light reflected by flat areas enters the lens, so flat surfaces look bright, while scratches and dents scatter the light away and look dark [53, 54]. In dark-field lighting, the light arrives at a low angle, so the specular reflection misses the lens; only light scattered by scratches, dust, and edges is collected, and these features appear bright on a dark background [53]. Backlighting places the light behind the part and produces a silhouette, which is ideal for measuring outlines and holes [53, 55]. Coaxial lighting sends the light along the optical axis through a beam splitter, which makes flat, mirror-like surfaces bright and reveals marks on them [54]. A diffuse dome surrounds the part with light from all directions; it suppresses glare and shadows on curved, shiny, or multi-faceted parts, but it also lowers the contrast of edges and fine texture [55]. Finally, structured lighting projects lines or patterns whose deformation encodes the shape of the part, which is the basis of the 3D methods described at the end of this section [56, 57]. Figure 12 summarizes these six basic geometries.
 
-![lighting-geometries](assets/lighting-geometries.png)
+![lighting-geometries](assets/image-capture-preprocessing/lighting-geometries.png)
 
 *Figure 12. The six basic illumination geometries, where the positions of the light and the camera decide whether a defect appears dark, bright, or as a shift in a projected line.*
 
@@ -37,7 +37,7 @@ The short-wave infrared (SWIR), from about 900 to 1700 nm in typical InGaAs (ind
 
 Further into the infrared, thermal cameras do not need a light source at all, because they record the heat radiation emitted by the part itself. They operate in the mid-wave (MWIR, about 3 to 5 µm) or long-wave (LWIR, about 8 to 14 µm) infrared [71]. Thermal imaging can inspect processes that leave a heat signature, e.g., heat seals under opaque caps or hot-glue joints, immediately after the process step [71, 72]. In one industrial case study, thermal images of bottle caps taken right after sealing were classified by a neural network, which detected defective seals that were invisible from the outside [72]. At the other end of the spectrum, X-ray imaging records how strongly each part of the product absorbs X-rays, i.e., it measures density rather than surface appearance. X-ray inspection is therefore used to find dense foreign bodies inside packed food, such as glass, stone, bone, and metal, which includes contaminants that metal detectors cannot find [73].
 
-![spectrum-applications](assets/spectrum-applications.png)
+![spectrum-applications](assets/image-capture-preprocessing/spectrum-applications.png)
 
 *Figure 13. Typical AVI applications per spectral band together with the camera sensors and the illumination available on the industrial market, where the bars show the useful wavelength range of each item.*
 
@@ -63,7 +63,7 @@ Finally, the camera interface must carry the data rate to the processor over the
 
 On a production line, the camera must capture each part at the right moment and without motion blur. This is achieved with a hardware trigger chain, as shown in Figure 14. First, a part-present sensor, e.g., a light barrier, or an encoder detects the part. Next, after a programmable delay that lets the part move into the FOV, a trigger signal starts the camera exposure. Alongside it, the same trigger fires a short strobe pulse from the light. Afterwards, the sensor is read out and the image is transferred to the processor, while the next part approaches. Hardware triggers are preferred over software triggers, because they have short and repeatable delays, so the part always appears at the same position in the image.
 
-![trigger-strobe-timing](assets/trigger-strobe-timing.png)
+![trigger-strobe-timing](assets/image-capture-preprocessing/trigger-strobe-timing.png)
 
 *Figure 14. Timing of a hardware-triggered capture with strobe lighting, where the short strobe pulse inside the exposure window defines the effective exposure time.*
 

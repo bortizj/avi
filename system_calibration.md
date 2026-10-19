@@ -31,7 +31,7 @@ Three types of planar targets are common. Checkerboards provide corners that can
 
 How do we acquire good calibration images in practice? First, we fix the final focus and aperture, and we mount any filters or protective windows, because changing them afterwards changes the calibration [95, 109]. Next, we capture the target at the working distance in many positions, so that it covers every part of the FOV at least once, and in several orientations, including views tilted by about 30 to 45° in different directions [95]. The required number of views depends on the target and the software, e.g., OpenCV recommends at least 10 images [94], while HALCON asks for at least 15 images for plates with rectangular mark arrays [95]. Afterwards, we check the image quality: the target must be sharp, evenly lit, and not overexposed, e.g., HALCON recommends marks of at least 20 pixels in diameter and a contrast of at least 100 gray values in 8-bit images [95]. Finally, the images are saved uncompressed and without pre-processing, because compression artifacts and filters shift the detected points [95].
 
-![calibration-geometry](assets/calibration-geometry.png)
+![calibration-geometry](assets/image-capture-preprocessing/calibration-geometry.png)
 
 *Figure 15. Effect of geometric calibration on a simulated camera with strong barrel distortion, where (a) is the captured image, (b) the image after distortion correction, and (c) the image rectified to the measurement plane with a known scale in millimeters. The images in this example were simulated using Python and OpenCV.*
 
@@ -65,7 +65,7 @@ $$I_{\text{corr}} = \frac{I - D}{F - D} \cdot \overline{(F - D)},$$
 
 where the bar denotes the mean over the image, so that the corrected image keeps the original gray-value range. Many line-scan and area-scan cameras can perform this correction internally [98].
 
-![calibration-flatfield](assets/calibration-flatfield.png)
+![calibration-flatfield](assets/image-capture-preprocessing/calibration-flatfield.png)
 
 *Figure 16. Effect of dark-frame and flat-field correction on a simulated surface with a faint stain and a thin scratch, where the same fixed threshold fails on the captured image (d) and works on the corrected image (e). The images in this example were simulated using Python and OpenCV.*
 
@@ -77,7 +77,7 @@ Flat-field correction removes a fixed pattern, but the illumination also changes
 
 When color itself is the inspection target, e.g., for sorting produce by ripeness or for checking the shade of printed or painted parts, the camera must also be color-calibrated. The colors recorded by a camera depend on the spectral sensitivity of its sensor, the spectrum of the light, and the internal processing of the camera; therefore, the same red part can give different RGB values on two cameras or under two lights. Color calibration first sets a fixed white balance on a neutral reference and then maps the camera values to a device-independent color space, e.g., CIE XYZ or CIELAB, using a reference chart with patches of known color, such as the 24-patch color rendition chart introduced by McCamy et al. [100]. The simplest and most widely used mapping is a 3 × 3 color correction matrix fitted by least squares to the linear camera values of the chart, while polynomial and root-polynomial mappings can reduce the error further; root-polynomial mappings additionally keep the robustness to exposure changes of the linear matrix [99]. The result is evaluated with a color-difference formula, i.e., the CIEDE2000 difference ΔE00, which is computed for each patch between the corrected color and the reference color [101]. The acceptable color tolerance must be agreed with the customer for each product, and the tolerance of 2 used in Figure 17 is only illustrative.
 
-![calibration-color](assets/calibration-color.png)
+![calibration-color](assets/image-capture-preprocessing/calibration-color.png)
 
 *Figure 17. Effect of color calibration on a simulated camera under warm LED light, where a 3 × 3 color correction matrix fitted to a generic 24-patch reference chart reduces the color error of most patches below the example tolerance. The images in this example were simulated using Python.*
 
