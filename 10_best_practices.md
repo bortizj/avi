@@ -114,7 +114,7 @@ The following table summarizes the design questions of step (6) together with ty
 | **Design question** | **Typical industrial answer** |
 | :--- | :--- |
 | Which decisions does the system make? | Pass, Fail with a reason code, and Review; grades or repair instructions where needed; an invalid result is never a Pass. |
-| What do escapes, false rejects, and reviews cost? | Costs agreed with production and quality engineering; reject when the calibrated probability exceeds $C_{	ext{fr}} / (C_{	ext{fr}} + C_{	ext{esc}})$ [231]. |
+| What do escapes, false rejects, and reviews cost? | Costs agreed with production and quality engineering; reject when the calibrated probability exceeds $C_{\text{fr}} / (C_{\text{fr}} + C_{\text{esc}})$ [231]. |
 | Are the scores probabilities? | Calibrated on a validation set with Platt scaling, isotonic regression, or temperature scaling; checked again when the process or the defect prevalence changes [232, 233, 234]. |
 | Which parts go to Review? | Parts between two cost-based thresholds, measurements inside guard bands, and anomalies without a known defect type [199, 235]; Review rate within the capacity of the reviewers. |
 | How is the defect catalogue applied? | Decision table per defect type, zone, severity, and count, e.g., critical, major, and minor defects [18, 25, 28]; the most severe finding becomes the reason code. |
@@ -130,4 +130,32 @@ The following table summarizes the design questions of step (6) together with ty
 | How is the decision verified in production? | Golden parts, sampling of accepted parts, e.g., AQL 0.65% for injectable drugs [11, 26], and control charts of the reject and Review rates [196]. |
 | Is the decision logic traceable? | Decision table, thresholds, and suppression rules versioned with models and calibration; reason code, evidence, and versions logged with every decision [110]. |
 
-⚠️WARNING: Place holder for the best practices of steps (7) to (S).⚠️
+## Action and closed feedback loop checklist
+
+The following table summarizes the design questions of step (7) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which actions does the system take? | Reject, sort or grade, mark, repair instruction, Review, hold or stop, alert, log, and feedback to the process and the inspection; each with a defined owner. |
+| Who controls the actuator? | The PLC, programmed according to IEC 61131-3, fires the reject and stops the line; the vision system delivers decisions and data [250, 251]. |
+| How are vision system and PLC connected? | Digital I/O handshake with trigger, Ready, Busy, Result Valid, result bits, Error, and heartbeat; fieldbus or OPC UA for data, preferably with the machine vision information model [252, 253]. |
+| Is every result bound to its part? | Part counter or identifier returned with each result; exactly one result per trigger checked by the PLC; alarm on missed or double triggers. |
+| Is the decision available in time? | Latency budget $t_{\text{lat}} \le d/v - t_{\text{act}} - t_{\text{margin}}$, measured at maximum line speed and full load, including queueing and rare long delays (Figure 35). |
+| How is the part tracked to the actuator? | Encoder-based tracking with a FIFO queue or shift register instead of a fixed time delay [258]; distance and encoder checked after maintenance. |
+| Is the reject fail-safe? | Positive release, i.e., only an explicit and valid Pass is accepted; reject confirmation, bin-full, bin-lock, and air-pressure monitoring; faults reset only by authorized staff [259]. |
+| Is the whole chain tested? | Test parts that must be rejected, e.g., at every shift start, through camera, decision, tracking, actuator, and confirmation. |
+| What is logged for each part? | Part identity, time, lot, decision, reason code, measurements, scores, defect lists, station, and versions of recipe, models, thresholds, and calibration [110]. |
+| Are the clocks synchronized? | Precision Time Protocol or equivalent between vision system, PLC, and MES [260]. |
+| Which images are stored? | All Fail and Review images without lossy compression, a random sample of Pass images, and all measurements; retention defined by industry and customer. |
+| Are records protected? | Audit trails and data integrity according to ISO 9001 and, in regulated industries, 21 CFR Part 11 and the ALCOA+ principles [110, 262, 263]. |
+| Which alerts exist and who responds? | Health, quality, and trend alerts with defined cause, response, and priority; stop or hold when the inspection cannot be trusted [264]. |
+| Can operators handle the alarm rate? | Long-term average below about 12 alarms per hour and no floods of more than 10 alarms in 10 minutes; alarms grouped, with hysteresis, and the alarm rate monitored [265, 266]. |
+| How are process changes detected? | EWMA or CUSUM charts on measurements and scores, with limits from a stable period and false alarms counted in hours of production [196, 267]. |
+| Is the process adjusted automatically? | Run-to-run or integral control with a low gain that respects dead time and noise; no adjustment by single results (tampering); limits and logging of every adjustment [268, 269, 270]. |
+| Are results passed forward? | Grades, defect positions, and measurements sent to sorting, repair, or mating steps, e.g., with IPC-CFX in electronics [31, 255, 271]. |
+| Where do new labels come from? | Review decisions, re-inspection of rejects, complaints, and a random audit of accepted parts sized for the escape rate to be found [272]. |
+| Is the inspection system monitored? | Inputs (brightness, sharpness, golden part), outputs (score distributions, measurements), and outcomes (reject, Review, and audit results) with control charts and defined responses [274, 275, 276]. |
+| How are models and calibrations updated? | Validation in the sandbox (S), shadow mode, versioned deployment with rollback, and change control; static models in regulated, critical applications [110, 276, 277]. |
+| How is 3D feedback used? | Metrology reports in QIF, tool offsets and build compensation from deviation maps, and repair paths from defect positions [16, 31, 261, 278]. |
+
+⚠️WARNING: Place holder for the best practices of step (S).⚠️

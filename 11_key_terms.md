@@ -81,3 +81,26 @@
 | Probability of rejection (Knapp method) | Share of repeated inspections that reject a test unit; it sorts units into accept, gray, and reject zones [248, 249]. |
 | Acceptance quality limit (AQL) | Worst tolerable quality level of a process in acceptance sampling, e.g., 0.65% for the batch release of injectable drugs [11, 26]. |
 | EWMA | Exponentially weighted moving average, a control chart that detects small, slow drifts of a process [196]. |
+| ISA-95 automation levels | Layers of a plant from sensors and actuators through the PLC to MES and ERP, standardized as IEC 62264 [250]. |
+| Digital I/O handshake | Exchange of trigger, status, and result signals between a vision system and a PLC, e.g., Ready, Busy, Result Valid, and Error. |
+| Heartbeat | Signal that toggles at a fixed rate while a system is alive, so that a frozen system is detected within a known time. |
+| OPC UA / OPC 40100 | Vendor-independent industrial communication standard (IEC 62541) / its companion specification for machine vision systems [252, 253]. |
+| Part tracking (shift register, FIFO) | Queue in the PLC that follows each part and its result from the camera to the actuator. |
+| Encoder-based tracking | Tracking of the part position by counting encoder pulses of the conveyor instead of measuring time. |
+| Positive release | Rule by which a part is only accepted with an explicit and valid Pass decision; everything else is rejected. |
+| Reject confirmation | Sensor check that a rejected part has actually left the line, e.g., entered the reject bin [259]. |
+| Audit trail | Secure, time-stamped record of the creation, modification, and deletion of records [262]. |
+| ALCOA+ | Data integrity principles: attributable, legible, contemporaneous, original, accurate, complete, consistent, enduring, and available [263]. |
+| Jidoka / andon | Principle of stopping automatically at an abnormality / signal that calls for help [264]. |
+| Alarm flood | More alarms than an operator can handle, e.g., more than 10 new alarms within 10 minutes [266]. |
+| Statistical process control (SPC) | Use of control charts to separate the natural variation of a process from changes with an assignable cause [196]. |
+| Run-to-run control | Feedback control that adjusts the process settings of the next run or part from the measurements of previous ones [268]. |
+| Tampering | Adjusting a stable process by every single deviation, which increases its variation [269]. |
+| Dead time | Delay between a change of the process and its first effect on the inspection result. |
+| Feed-forward | Use of inspection results to guide a later process step, e.g., repair or sorting. |
+| Selective labels | Situation where outcomes are only observed for the cases selected by the current decision, e.g., only rejected parts are reviewed [272]. |
+| Audit sample | Random sample of accepted parts reviewed by humans to find escapes. |
+| Concept drift / dataset shift | Change of the data or of the relation between data and correct decisions after a model was trained [274]. |
+| Shadow mode | Operation of a new model version in parallel with the current one, without acting on the parts. |
+| Static / dynamic model | Model whose parameters are fixed during use / that keeps adapting during use [277]. |
+| Precision Time Protocol (PTP) | Network protocol that synchronizes the clocks of devices, standardized as IEEE 1588 [260]. |
