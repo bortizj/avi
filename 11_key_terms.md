@@ -65,3 +65,19 @@
 | AUROC / PRO | Area under the ROC curve, which measures how well scores rank defects above good parts / per-region overlap, which weights each defect region equally [215]. |
 | Deviation map (heat map) | Color-coded signed distance of every measured point from the CAD model. |
 | Best-fit / datum alignment | Registration that minimizes all deviations / that places the part on the datums defined by the drawing [227]. |
+| Pass / Fail / Review | Decision classes of step (6), where Review sends a part with inconclusive evidence to a human inspector. |
+| Reason code | Rule, defect, or measurement that caused a Fail or Review decision, stored with the decision. |
+| Fail-safe decision | Design rule by which missing, invalid, or late results lead to Fail or Review, never to Pass. |
+| Score calibration | Mapping of model scores to probabilities that match the observed frequency of defects, e.g., Platt scaling or temperature scaling [232, 233]. |
+| Reject option | Option of a classifier to withhold a decision when the evidence is ambiguous; the basis of the Review class [235]. |
+| Conformal prediction | Method that turns model scores into sets of plausible classes with a guaranteed coverage probability [237]. |
+| Data-, feature-, and decision-level fusion | Combination of sources before the analysis (early fusion), of their features, or of their scores and decisions (late fusion) [238]. |
+| Sum rule / majority vote | Decision-level fusion that adds the scores / counts the decisions of several sources [239]. |
+| M-of-N detection | Confirmation of a detection only when it occurs in at least M of N consecutive frames or observations [241]. |
+| Tracking / Kalman filter | Linking of detections across frames into object tracks / recursive estimator that predicts the next position of a moving object [242]. |
+| False call | Defect reported by an inspection system that a review finds acceptable; common term in AOI [243]. |
+| Automation bias | Tendency of humans to follow the suggestion of an automated system even when the evidence contradicts it [245]. |
+| Clopper-Pearson bound / rule of three | Exact confidence bound of a binomial rate / approximation 3/n of the 95% upper bound when no event occurs in n trials [246, 247]. |
+| Probability of rejection (Knapp method) | Share of repeated inspections that reject a test unit; it sorts units into accept, gray, and reject zones [248, 249]. |
+| Acceptance quality limit (AQL) | Worst tolerable quality level of a process in acceptance sampling, e.g., 0.65% for the batch release of injectable drugs [11, 26]. |
+| EWMA | Exponentially weighted moving average, a control chart that detects small, slow drifts of a process [196]. |

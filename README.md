@@ -54,7 +54,7 @@ The AVI process relies on a model that transforms physical manufacturing compone
 
 The lifecycle begins with (1) image capture, using cameras, lenses, and targeted illumination chosen to make defects clearly visible, to convert each part into digital images or 3D point clouds. Here, hardware triggers and strobe lighting synchronize the capture with the moving part. Next, (2) system calibration relates image measurements to the real world by correcting lens distortion, defining the pixel-to-millimeter mapping, and aligning cameras and lighting across stations. Calibration is done at deployment and checked periodically using reference targets. Following acquisition, the digital data is (3) pre-processed to improve image quality before analysis through noise filtering, contrast normalization, and image alignment, or through outlier removal in the case of 3D point clouds.
 
-Afterwards, (4) region of interest and object detection separate the target part from its background, using classical methods such as template matching or deep learning methods such as segmentation networks. Thereafter, (5) feature extraction and anomaly detection modules measure dimensions, find known defects, and flag unknown anomalies, by combining rule-based algorithms with supervised and unsupervised machine learning. The resulting data is then (6) post-processed and fused across several views, sensors, or time steps, suppressing false alarms and issuing one definitive decision, i.e., Pass, Fail, or Review. Then, the (7) action and closed feedback loop phase executes the decision by sorting parts, logging data, and triggering alerts, e.g., through a PLC, while sending uncertain and rejected cases to human reviewers.
+Afterwards, (4) region of interest and object detection separate the target part from its background, using classical methods such as template matching or deep learning methods such as segmentation networks. Thereafter, (5) feature extraction and anomaly detection modules measure dimensions, find known defects, and flag unknown anomalies, by combining rule-based algorithms with supervised and unsupervised machine learning. The resulting data is then (6) post-processed and fused across several views, sensors, or time steps, suppressing false alarms and issuing one definitive decision per part, i.e., Pass, Fail, or Review, with thresholds derived from the costs of escapes and false rejects. Then, the (7) action and closed feedback loop phase executes the decision by sorting parts, logging data, and triggering alerts, e.g., through a PLC, while sending uncertain and rejected cases to human reviewers.
 
 The process also includes a (S)upporting step named model sandbox. Here, human experts label new and difficult cases, and these labels are used to retrain and validate the models offline, e.g., with active learning. Validated updates are then deployed back to steps (3) to (6), so the sandbox keeps the system improving after deployment. The table below summarizes the objective and typical industrial examples of each step.
 
@@ -109,7 +109,9 @@ Feature extraction and anomaly detection is the step where the regions of intere
 
 Please check out the detailed anomaly detection step process here: [(5) Feature extraction and anomaly detection](06_anomaly_detection.md)
 
-### (6) Decision fusion and post-processing 
+### (6) Decision fusion and post-processing
+
+Decision fusion and post-processing is the step where all the evidence about a part is combined into one decision. Its objective is to make a definitive Pass, Fail, or Review call, i.e., to turn the measurements, defect lists, and anomaly scores of every view, sensor, and time step into a single, explainable decision per part, where the thresholds follow the costs of escapes and false rejects, false alarms are suppressed by fusing the evidence in the coordinate system of the part, and the uncertain cases are sent to a human inspector.
 
 Please check out the detailed decision fusion step process here: [(6) Decision fusion and post-processing](07_decision_fusion.md)
 
@@ -133,7 +135,7 @@ This section summarizes the key findings, highlights open problems, and provides
 
 ⚠️ TODO: Clean, refine and complete the open problems section. This should be brief but comprehensive. ⚠️
 
-The open problems section is still a placeholder; the following items from steps (3) to (5) are candidates for it.
+The open problems section is still a placeholder; the following items from steps (3) to (6) are candidates for it.
 
 - **Validation of learned enhancement.** Learned denoisers and enhancers can remove or replace rare structures, i.e., exactly the defects an inspection looks for [128, 130], and there is no established procedure to certify a learned pre-processing beyond test sets and method-noise checks.
 - **High-resolution images and small network inputs.** Many anomaly detection models work on inputs of about 224 × 224 pixels, while inspection images have several megapixels; resizing loses small defects and tiling multiplies the computation [140, 141].
@@ -146,6 +148,10 @@ The open problems section is still a placeholder; the following items from steps
 - **Thresholds and calibration of scores.** Production runs at one threshold, while benchmarks report threshold-independent metrics, and threshold-dependent results do not always follow them [219]; estimating low false reject rates reliably needs many good images, and scores drift with the process.
 - **Validation of zero-shot and synthetic-data methods.** Vision-language models detect anomalies without training images of the product [220, 221], and synthetic defects reduce the need for real defect images [212, 224], but how to prove their detection rate for a specific product without many real defective parts is still open.
 - **Alignment-dependent 3D results.** CAD comparisons depend on the alignment, i.e., the same scan can pass with a best-fit alignment and fail with a datum alignment (Figure 30), and automatic alignment of nearly flat or symmetric parts can stop in local minima [149, 227].
+- **Calibrated decisions under changing conditions.** Cost-based thresholds and Review zones need calibrated probabilities, but modern networks are often overconfident [232], the prevalence of defects changes with the process, and the guarantees of conformal prediction hold only while production data resembles the calibration data [237].
+- **Correlated evidence in multi-view and multi-sensor fusion.** Fusion rules assume independent sources [239], while the views of a defect are correlated and false alarms such as glare move with the part (Figure 32); learned fusion across views and sensors is promising [216, 230], but hard to validate source by source.
+- **Proving low escape rates.** Showing an escape rate below 1% with 95% confidence needs at least 299 defective parts without any escape [246, 247], and many defects are detected only with a certain probability (Figure 34) [248]; collecting such test sets for rare or new defect types remains a major effort.
+- **Human review in the loop.** The Review class relies on reviewers who suffer from vigilance decrement and automation bias [33, 245], and methods to measure and maintain the quality of human review decisions, which also become training labels, are still largely manual.
 
 ### Best practices
 

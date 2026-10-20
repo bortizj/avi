@@ -107,4 +107,27 @@ The following table summarizes the design questions of step (5) together with ty
 | Are the features used beyond the decision? | Measurements and scores logged per part for statistical process control, drift monitoring, and the sandbox (S) [196]. |
 | Are models and thresholds traceable? | Model, threshold, calibration, and pre-processing versions stored with every result; revalidation after changes of product, supplier, or lighting [110]. |
 
-⚠️WARNING: Place holder for the best practices of steps (6) to (S).⚠️
+## Decision fusion and post-processing checklist
+
+The following table summarizes the design questions of step (6) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which decisions does the system make? | Pass, Fail with a reason code, and Review; grades or repair instructions where needed; an invalid result is never a Pass. |
+| What do escapes, false rejects, and reviews cost? | Costs agreed with production and quality engineering; reject when the calibrated probability exceeds $C_{	ext{fr}} / (C_{	ext{fr}} + C_{	ext{esc}})$ [231]. |
+| Are the scores probabilities? | Calibrated on a validation set with Platt scaling, isotonic regression, or temperature scaling; checked again when the process or the defect prevalence changes [232, 233, 234]. |
+| Which parts go to Review? | Parts between two cost-based thresholds, measurements inside guard bands, and anomalies without a known defect type [199, 235]; Review rate within the capacity of the reviewers. |
+| How is the defect catalogue applied? | Decision table per defect type, zone, severity, and count, e.g., critical, major, and minor defects [18, 25, 28]; the most severe finding becomes the reason code. |
+| Are defects counted only once? | Defects merged in part coordinates across tiles and views before size and count limits are applied. |
+| How are several views combined? | Evidence fused per location in part coordinates, with the overlap of the views planned in step (1) [239]; OR rules only with a false reject budget per source, since $1-(1-\alpha)^n$ grows with every source. |
+| How are sensors and algorithms combined? | 2D and 3D results fused in part coordinates [229, 230]; findings of the anomaly detector alone go to Review; the first stage of a cascade is set for a very high detection rate. |
+| How are image sequences used? | Static background removed with a temporal median; detections confirmed by persistence over M of N frames and by tracking [241, 242]; motion rules validated with real test units. |
+| How are false alarms suppressed? | ROI and zone masks, size and contrast filters, consistency across views and frames, and verification of candidates [243, 244]; every rule checked on known defective parts; suppressed candidates logged. |
+| How is the Review station designed? | Images of all views, defect location and size, explanation maps, and reason code [223]; known test parts mixed into the queue to monitor reviewers and automation bias [245]; decisions stored as labels for the sandbox (S). |
+| What happens when no decision can be made? | Fail-safe logic: missing image, missed trigger, part not found, invalid measurement, or timeout lead to Fail or Review with an alarm. |
+| Is the decision available in time? | Worst-case latency measured; decision ready before the part reaches the reject station of step (7). |
+| How is the decision validated? | Detection, escape, false reject, and Review rates per part and per defect type; 95% upper bound of the escape rate, e.g., 299 defective parts without escape for less than 1% [246, 247]; repeated inspections with accept, gray, and reject zones [248, 249]. |
+| How is the decision verified in production? | Golden parts, sampling of accepted parts, e.g., AQL 0.65% for injectable drugs [11, 26], and control charts of the reject and Review rates [196]. |
+| Is the decision logic traceable? | Decision table, thresholds, and suppression rules versioned with models and calibration; reason code, evidence, and versions logged with every decision [110]. |
+
+⚠️WARNING: Place holder for the best practices of steps (7) to (S).⚠️
