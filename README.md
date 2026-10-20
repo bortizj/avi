@@ -99,6 +99,8 @@ Please check out the detailed image enhancement and pre-processing step process 
 
 ### (4) Region of interest and object detection
 
+Region of interest and object detection is the step where the part, or the feature to be inspected, is found in the pre-processed data. Its objective is to isolate the target part or feature, i.e., to decide whether the part is there, where it is, and which pixels or points belong to it, so that the later steps inspect the right area in the coordinate system of the part.
+
 Please check out the detailed object detection step process here: [(4) Region of interest and object detection](05_object_detection.md)
 
 ### (5) Feature extraction and anomaly detection
@@ -127,11 +129,14 @@ This section summarizes the key findings, highlights open problems, and provides
 
 ### Open problems
 
-The open problems section is still a placeholder; the following items from step (3) are candidates for it.
+The open problems section is still a placeholder; the following items from steps (3) and (4) are candidates for it.
 
 - **Validation of learned enhancement.** Learned denoisers and enhancers can remove or replace rare structures, i.e., exactly the defects an inspection looks for [128, 130], and there is no established procedure to certify a learned pre-processing beyond test sets and method-noise checks.
 - **High-resolution images and small network inputs.** Many anomaly detection models work on inputs of about 224 × 224 pixels, while inspection images have several megapixels; resizing loses small defects and tiling multiplies the computation [140, 141].
 - **Joint design of capture and processing.** Learning the optics and the processing together, e.g., a learned sensor mask with a reconstruction network for time-of-flight cameras [143], promises better data, but it makes the system harder to interpret and to validate.
+- **Robustness of learned detectors to new conditions.** A learned detector is only valid for the conditions represented in its training data, and a new background, product, or supplier can degrade it without any visible error (Figure 25); detecting such a domain shift reliably at run time remains difficult.
+- **Pose estimation of industrial parts known only from CAD.** Methods for objects that are introduced only through their CAD model have improved strongly [159], but parts with reflective surfaces, little texture, or symmetries remain demanding cases, which is why dedicated industrial datasets were created [183].
+- **Validation of foundation models.** Promptable segmentation and open-vocabulary detection models work on images they were not trained on [177, 178], but their behavior on a specific product cannot be guaranteed, which currently limits them mainly to labeling and prototyping.
 
 ⚠️WARNING: Place holder for the open problems.⚠️
 

@@ -34,3 +34,21 @@
 | Statistical outlier removal | Removal of 3D points whose mean distance to their nearest neighbors is unusually large [146]. |
 | Voxel grid | 3D grid of small cubes in which all points of each cube are replaced by their centroid. |
 | Flying pixels | Spurious 3D points between foreground and background at depth edges, typical of time-of-flight cameras [143]. |
+| Region of interest (ROI) | Part of an image or point cloud that is passed on for analysis, e.g., a rectangle around a component or the mask of a part. |
+| Fixturing | Definition of inspection ROIs in the coordinate system of the part, so that they move with the position and rotation found by the detection [152]. |
+| Bounding box / oriented bounding box | Axis-aligned rectangle around an object / rectangle that also follows the rotation of the object. |
+| Semantic / instance segmentation | Assignment of a class / of an individual object to every pixel or point. |
+| Blob analysis | Grouping of thresholded pixels into connected regions and computing their features, e.g., area, center, and orientation. |
+| Watershed transform | Segmentation that floods an image from markers; used with the distance transform to separate touching objects [156]. |
+| Hough transform | Voting method that finds lines, circles, or other shapes from edge points [167, 169]. |
+| RANSAC | Robust fitting that repeatedly fits a model to random minimal samples and keeps the model with the most inliers [162]. |
+| Normalized cross-correlation (NCC) | Similarity measure between a template and an image window that is invariant to linear brightness and contrast changes [170]. |
+| Shape-based matching | Template matching that compares edge directions instead of gray values, robust to occlusion, clutter, and illumination changes [152]. |
+| Non-maximum suppression (NMS) | Removal of overlapping duplicate detections of the same object, keeping the one with the highest score. |
+| Intersection over union (IoU) | Area of the intersection of a predicted and a true region divided by the area of their union. |
+| Average precision (AP) / mAP | Summary of the precision-recall curve of a detector; mAP is the mean of the AP over all classes [179, 180]. |
+| 6D pose | Position and orientation of an object in space, i.e., three translations and three rotations. |
+| DBSCAN | Density-based clustering with a radius eps and a minimum number of points, which also labels isolated points as noise [165]. |
+| Point pair features | Model-based 3D detection that votes for the object pose using the distances and normal angles of point pairs [158]. |
+| Ray casting | Tracing rays from a sensor into a 3D model to compute the visible surfaces or a virtual scan [185]. |
+| Domain shift | Difference between the conditions of the training data and of operation, e.g., a new background, which can degrade a learned model. |

@@ -59,4 +59,27 @@ The following table summarizes the design questions of step (3) together with ty
 | Does the chain fit the cycle time? | Separable and running-sum filters, processing of regions of interest only, in-camera correction, and GPU processing for heavy filters. |
 | How is the chain validated and traced? | Detection, escape, and false reject rates on a test set with and without each operation; parameters versioned with the calibration data [48, 110]. |
 
-⚠️WARNING: Place holder for the best practices of steps (4) to (S).⚠️
+## Region of interest and object detection checklist
+
+The following table summarizes the design questions of step (4) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which output do the later steps need? | The simplest output that supports steps (5) and (6), i.e., presence, box, oriented box or 2D pose, mask, keypoints, or 6D pose. |
+| Can detection be avoided or simplified? | Fixtures, nests, singulation, guide rails, backlight, or a contrasting background before complex algorithms [3]. |
+| How accurate must the localization be? | Derived from the ROI margin, the smallest defect, and the measurement tolerance; sub-pixel for fixtured measurements [152]. |
+| Is the object detectable under all expected conditions? | Tested early on real images of good, defective, and borderline parts at the worst positions and appearances. |
+| High contrast and separated parts? | Fixed or Otsu threshold with blob analysis and feature filters [160, 166]. |
+| Touching parts? | Distance transform and watershed for compact parts [156]; instance segmentation or region growing otherwise [157, 182]. |
+| Simple geometric features? | Canny edges with Hough transform or RANSAC fitting, with the search range limited to the expected sizes [161, 167, 162]. |
+| Rigid part in a random pose? | Shape-based matching over the full range of rotations, with image pyramids and a documented minimum score [7, 152]. |
+| Variable appearance or cluttered background? | Detection or segmentation networks trained on labeled images covering all products, backgrounds, and lighting conditions [155, 163]. |
+| How is the detector evaluated? | Recall of parts, false detections per image, localization error in pixels, millimeters, and degrees, and worst-case time on a separate test set; AP for model comparison [180]. |
+| What if no part, too many parts, or a low-score part is found? | An explicit Fail or Review rule in step (6); never a Pass. |
+| Will a learned detector meet new conditions? | New backgrounds, products, suppliers, and lights treated as changes that need new labeled validation data in the sandbox (S). |
+| How is the conveyor or table removed in 3D? | RANSAC plane fit with a distance threshold above the sensor noise and below the lowest feature [162, 164]. |
+| How are 3D objects separated? | DBSCAN or Euclidean clustering with eps above the point spacing and below the smallest gap; normal-based region growing for touching parts [165, 182]. |
+| How is the 6D pose found for CAD comparison? | Point pair features or a learned pose estimator for the initial pose, ICP for refinement, and ray casting for the visible region [149, 158, 159, 185]. |
+| Are detection results traceable and monitored? | Detector version stored with each result; match scores logged and trended to detect drift [110]. |
+
+⚠️WARNING: Place holder for the best practices of steps (5) to (S).⚠️
