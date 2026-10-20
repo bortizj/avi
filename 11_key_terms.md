@@ -104,3 +104,24 @@
 | Shadow mode | Operation of a new model version in parallel with the current one, without acting on the parts. |
 | Static / dynamic model | Model whose parameters are fixed during use / that keeps adapting during use [277]. |
 | Precision Time Protocol (PTP) | Network protocol that synchronizes the clocks of devices, standardized as IEEE 1588 [260]. |
+| Model sandbox | Supporting step (S), separated from the running line, where data are labeled and models are retrained and validated before deployment. |
+| Label / annotation | Human statement of what an image or point cloud shows, e.g., a class, a box, or a mask, used to train and test models. |
+| Annotation guideline | Document that translates the defect catalogue into labeling rules, including classes, limit samples, label geometry, and the handling of doubtful cases. |
+| Limit sample | Example of a defect just inside or just outside the acceptance limit, used to align human inspectors and annotators. |
+| Image-level label / weak supervision | One label per image without location / training of a localizing model from labels that are less detailed than its output [201]. |
+| Extreme clicking | Box annotation by clicking the four extreme points of an object instead of drawing a rectangle [282]. |
+| Model-assisted labeling | Annotation in which a model proposes labels that a human checks and corrects. |
+| Label noise | Labels that do not match the true class of an example [281]. |
+| Cohen's kappa | Agreement between two raters beyond the agreement expected by chance [285]. |
+| Adjudication | Decision of an expert on the images where two annotators disagree. |
+| Golden set | Set of images with expert-agreed labels used to check annotators over time. |
+| Confident learning | Method that finds likely label errors from the disagreement between labels and out-of-sample model predictions [287]. |
+| Active learning | Selection of the examples to be labeled by the model itself, to reach a given performance with fewer labels [288]. |
+| Uncertainty sampling / query by committee | Selection of the examples with the least certain prediction / with the largest disagreement between several models [289, 290]. |
+| Diversity sampling (core set) | Selection of examples that cover the feature space of the unlabeled pool, avoiding near duplicates [291]. |
+| Pseudo-label | Confident prediction of a model on an unlabeled example, used as an additional training label [294]. |
+| Domain randomization | Training on simulated data with randomized appearance, so that a model transfers to real images [295]. |
+| Data leakage | Information about the test data that is available during training, which makes results optimistic [299]. |
+| Challenge set | Collection of hard cases, e.g., limit samples, past escapes, and past false rejects, used to check new versions for regressions. |
+| Datasheet / model card | Documentation of a dataset / of a trained model, its intended use, and its performance [298, 301]. |
+| Catastrophic forgetting | Loss of previously learned knowledge when a neural network is trained only on new data [302]. |

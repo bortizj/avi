@@ -158,4 +158,25 @@ The following table summarizes the design questions of step (7) together with ty
 | How are models and calibrations updated? | Validation in the sandbox (S), shadow mode, versioned deployment with rollback, and change control; static models in regulated, critical applications [110, 276, 277]. |
 | How is 3D feedback used? | Metrology reports in QIF, tool offsets and build compensation from deviation maps, and repair paths from defect positions [16, 31, 261, 278]. |
 
-⚠️WARNING: Place holder for the best practices of step (S).⚠️
+## Model sandbox checklist
+
+The following table summarizes the design questions of step (S) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which annotation type does each problem need? | The cheapest type that supports steps (4) to (6), i.e., image-level labels for presence, boxes or points for position and count, masks or measured attributes for size limits; the richest level for test sets and critical defect types. |
+| Can the annotation effort be reduced? | Review decisions stored as labels; weak or mixed supervision with few masks [201]; model-assisted pre-labels that humans correct [177, 178]. |
+| Is there an annotation guideline? | Derived from the defect catalogue with limit samples; classes, look-alike classes, label geometry, and an uncertain option; versioned with the datasets [25]. |
+| Are the labels consistent? | Golden set for every annotator; double labeling with adjudication of a share of the images; Cohen's kappa above about 0.75 and IoU tracked per annotator [48, 285, 286]. |
+| Do the labels follow the defect catalogue? | Checked against expert labels and limit samples, since agreement does not reveal a bias that all annotators share (Figure 39). |
+| How are label errors found? | Likely errors ranked by the disagreement between labels and out-of-sample predictions and reviewed by humans [287]; test labels never corrected automatically by the model. |
+| Which images are labeled? | Review cases, uncertainty and diversity with a random share in every batch [288, 292]; new products, suppliers, and conditions first. |
+| How are unknown defect types found? | Random share of the labeling batches and the audit of accepted parts of step (7) [272] (Figure 40). |
+| Is the human feedback used beyond retraining? | Review and audit results analyzed by reason code, position, size, and time; changes of capture, calibration, pre-processing, or decision logic where they are more effective. |
+| How are unlabeled and synthetic data used? | Pseudo-labels, pasted defects, and rendered CAD data for training only [224, 294, 295]; validation on real images with expert labels. |
+| How are the datasets split? | By part, lot, and time; protected test set with verified labels, never used for development [277, 299]. |
+| Is the test set reused for tuning? | No; it accepts or rejects finished candidates [300], while a challenge set of limit samples, past escapes, and past false rejects checks for regressions. |
+| Are datasets and models documented? | Datasheets and model cards with source, guideline, intended use, known limitations, and performance per defect type [298, 301]. |
+| How is a model retrained? | On the complete versioned dataset, not only on new data, to keep known defect types [302]; static models in critical applications [277]. |
+| How is a candidate released? | Offline replay of steps (3) to (6), part-level rates per defect type with confidence bounds [246, 247], comparison with production, shadow mode, versioned deployment, and rollback [276, 277]. |
+| How are 3D data labeled? | Labels on height maps or calibrated 2D images transferred to the points, regions defined on the CAD model, simulated scans for training, and real scans for validation [185, 228]. |

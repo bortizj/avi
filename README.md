@@ -123,6 +123,8 @@ Please check out the detailed action step process here: [(7) Action and closed f
 
 ### (S) Model sandbox
 
+Model sandbox is the supporting step where humans teach and check the inspection system. Its objective is to improve and validate the models with human input, i.e., to turn the images and human decisions collected by steps (6) and (7) into consistent labels that follow the defect catalogue and its limit samples, to select the images worth labeling with an active learning data pipeline that keeps a random share for unknown defect types, to decide whether a problem is best solved with new training data or with a change of the capture, calibration, pre-processing, or decision logic, and to release every change only after an independent, part-level validation on protected test data, followed by shadow mode and change control.
+
 Please check out the detailed model sandbox step process here: [(S) Model sandbox](09_model_sandbox.md)
 
 ## Past projects overview
@@ -159,6 +161,9 @@ The open problems section is still a placeholder; the following items from steps
 - **From inspection data to process causes.** Feedback control works well for single, measurable process parameters [268], but attributing defects to their causes across many interacting process parameters, with dead time and changing materials (Figure 36), is still largely done by hand.
 - **Unknown escapes and selective labels.** A running system only receives labels for the parts it rejects or sends to Review [272], so defects that it accepts remain invisible until audits or complaints reveal them (Figure 37); estimating the escape rate of unknown defect types with affordable audits remains open.
 - **Continual learning under change control.** Models that adapt during production could follow drifts and new products, but regulators currently expect static models under change control in critical applications [277], and safe, verifiable ways to update models frequently are still an active research topic.
+- **Correct labels for borderline defects.** Annotators disagree on where faint defects end and on cases close to the limit (Figure 38), and agreement between annotators does not prove that the labels follow the defect catalogue, since annotators can share the same bias (Figure 39); measuring the correctness of labels without many expert labels remains largely manual [285, 287].
+- **Active learning for rare and unknown defects.** Query strategies select the images on which a model is uncertain, but defect types that look nothing like the labeled ones receive confident predictions and are rarely selected (Figure 40); finding them efficiently still relies on random exploration and audits of accepted parts [272, 288].
+- **Labeling with foundation models.** Promptable segmentation and open-vocabulary detection can produce pre-labels from a click or a text prompt [177, 178], but annotators tend to accept wrong suggestions [245], and how to use such pre-labels without biasing the training and test data is not yet established.
 
 ### Best practices
 
