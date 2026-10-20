@@ -1,5 +1,7 @@
 # Best practices
 
+⚠️ TODO: Clean, refine and complete the best practices section. This should be brief but comprehensive. ⚠️
+
 ## Image capture checklist
 
 The following table summarizes the design questions of step (1) together with typical industrial answers.
@@ -82,4 +84,27 @@ The following table summarizes the design questions of step (4) together with ty
 | How is the 6D pose found for CAD comparison? | Point pair features or a learned pose estimator for the initial pose, ICP for refinement, and ray casting for the visible region [149, 158, 159, 185]. |
 | Are detection results traceable and monitored? | Detector version stored with each result; match scores logged and trended to detect drift [110]. |
 
-⚠️WARNING: Place holder for the best practices of steps (5) to (S).⚠️
+## Feature extraction and anomaly detection checklist
+
+The following table summarizes the design questions of step (5) together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which method checks each characteristic of the defect catalogue? | Dimensions with calibrated measurement, known critical defects with rules or supervised models, remaining appearance deviations with an anomaly detector; every defect type covered by at least one method [198]. |
+| Is the characteristic a dimension? | Sub-pixel edges, calipers, and geometric fitting relative to the datums of the drawing, in calibrated images or point clouds [7, 187, 202]. |
+| Is the measurement good enough for the tolerance? | Repeatability and bias measured on a certified reference part; resolution of at least one tenth of the tolerance; Gage R&R [48]. |
+| What happens close to the tolerance limits? | Decision rule agreed with quality engineering, e.g., guard bands of the expanded uncertainty, with parts inside the guard band sent to Review [199, 203]. |
+| Is the part appearance stable? | Golden template or variation model after sub-pixel alignment, trained on the full natural variation of good parts [137, 193]. |
+| Does the surface have a texture? | Texture features, e.g., Fourier, Gabor, co-occurrence, or local binary patterns, with limits learned from good surfaces [135, 200, 205]. |
+| Are there enough labeled defect images? | Supervised segmentation or detection networks, with weighted losses and few pixel-level labels where possible [174, 192, 201]. |
+| Are defects rare or unknown? | Anomaly detection trained on good parts only, e.g., memory-bank, flow, or student-teacher methods [140, 194, 197]. |
+| How is the threshold set? | On a separate set of many good images for the accepted false reject rate, checked on defective parts and limit samples for the required detection rate per defect type. |
+| How are methods compared and validated? | AUROC and PRO for model selection [209, 215]; detection, escape, and false reject rates at the operating threshold on real parts for release [48]. |
+| Are small defects preserved? | Tiling at full resolution instead of downsizing; identical pre-processing in training and production [140, 141, 142]. |
+| Can the result be explained? | Defect position, size, and score stored with each result; anomaly maps, masks, or Grad-CAM shown for Review cases [223]. |
+| How is a 3D part compared with its CAD model? | Registration with ICP from the pose of step (4), signed point-to-surface distances, visibility by ray casting, and clustering of out-of-tolerance regions [149, 185, 195]. |
+| Which alignment does the CAD comparison use? | The datum system of the drawing for conformity decisions; best fit only to judge shape; local features measured as separate dimensions [202, 227]. |
+| Are the features used beyond the decision? | Measurements and scores logged per part for statistical process control, drift monitoring, and the sandbox (S) [196]. |
+| Are models and thresholds traceable? | Model, threshold, calibration, and pre-processing versions stored with every result; revalidation after changes of product, supplier, or lighting [110]. |
+
+⚠️WARNING: Place holder for the best practices of steps (6) to (S).⚠️

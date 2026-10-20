@@ -54,7 +54,7 @@ The AVI process relies on a model that transforms physical manufacturing compone
 
 The lifecycle begins with (1) image capture, using cameras, lenses, and targeted illumination chosen to make defects clearly visible, to convert each part into digital images or 3D point clouds. Here, hardware triggers and strobe lighting synchronize the capture with the moving part. Next, (2) system calibration relates image measurements to the real world by correcting lens distortion, defining the pixel-to-millimeter mapping, and aligning cameras and lighting across stations. Calibration is done at deployment and checked periodically using reference targets. Following acquisition, the digital data is (3) pre-processed to improve image quality before analysis through noise filtering, contrast normalization, and image alignment, or through outlier removal in the case of 3D point clouds.
 
-Afterwards, (4) region of interest and object detection separate the target part from its background, using classical methods such as template matching or deep learning methods such as segmentation networks. Thereafter, (5) feature extraction and anomaly detection modules find known defects, and measure dimensions, by combining rule-based algorithms with machine learning. The resulting data is then (6) post-processed and fused across several views, sensors, or time steps, suppressing false alarms and issuing one definitive decision, i.e., Pass, Fail, or Review. Then, the (7) action and closed feedback loop phase executes the decision by sorting parts, logging data, and triggering alerts, e.g., through a PLC, while sending uncertain and rejected cases to human reviewers.
+Afterwards, (4) region of interest and object detection separate the target part from its background, using classical methods such as template matching or deep learning methods such as segmentation networks. Thereafter, (5) feature extraction and anomaly detection modules measure dimensions, find known defects, and flag unknown anomalies, by combining rule-based algorithms with supervised and unsupervised machine learning. The resulting data is then (6) post-processed and fused across several views, sensors, or time steps, suppressing false alarms and issuing one definitive decision, i.e., Pass, Fail, or Review. Then, the (7) action and closed feedback loop phase executes the decision by sorting parts, logging data, and triggering alerts, e.g., through a PLC, while sending uncertain and rejected cases to human reviewers.
 
 The process also includes a (S)upporting step named model sandbox. Here, human experts label new and difficult cases, and these labels are used to retrain and validate the models offline, e.g., with active learning. Validated updates are then deployed back to steps (3) to (6), so the sandbox keeps the system improving after deployment. The table below summarizes the objective and typical industrial examples of each step.
 
@@ -105,6 +105,8 @@ Please check out the detailed object detection step process here: [(4) Region of
 
 ### (5) Feature extraction and anomaly detection
 
+Feature extraction and anomaly detection is the step where the regions of interest found in step (4) are analyzed in detail. Its objective is to detect flaws and measure dimensions, i.e., to turn the pixels or points of a part into measured dimensions with their uncertainty, lists of known defects with their position and size, and anomaly scores that show how far the part deviates from good parts, which step (6) then combines into one decision.
+
 Please check out the detailed anomaly detection step process here: [(5) Feature extraction and anomaly detection](06_anomaly_detection.md)
 
 ### (6) Decision fusion and post-processing 
@@ -129,7 +131,9 @@ This section summarizes the key findings, highlights open problems, and provides
 
 ### Open problems
 
-The open problems section is still a placeholder; the following items from steps (3) and (4) are candidates for it.
+⚠️ TODO: Clean, refine and complete the open problems section. This should be brief but comprehensive. ⚠️
+
+The open problems section is still a placeholder; the following items from steps (3) to (5) are candidates for it.
 
 - **Validation of learned enhancement.** Learned denoisers and enhancers can remove or replace rare structures, i.e., exactly the defects an inspection looks for [128, 130], and there is no established procedure to certify a learned pre-processing beyond test sets and method-noise checks.
 - **High-resolution images and small network inputs.** Many anomaly detection models work on inputs of about 224 × 224 pixels, while inspection images have several megapixels; resizing loses small defects and tiling multiplies the computation [140, 141].
@@ -137,8 +141,11 @@ The open problems section is still a placeholder; the following items from steps
 - **Robustness of learned detectors to new conditions.** A learned detector is only valid for the conditions represented in its training data, and a new background, product, or supplier can degrade it without any visible error (Figure 25); detecting such a domain shift reliably at run time remains difficult.
 - **Pose estimation of industrial parts known only from CAD.** Methods for objects that are introduced only through their CAD model have improved strongly [159], but parts with reflective surfaces, little texture, or symmetries remain demanding cases, which is why dedicated industrial datasets were created [183].
 - **Validation of foundation models.** Promptable segmentation and open-vocabulary detection models work on images they were not trained on [177, 178], but their behavior on a specific product cannot be guaranteed, which currently limits them mainly to labeling and prototyping.
-
-⚠️WARNING: Place holder for the open problems.⚠️
+- **From anomalies to defects.** Anomaly detectors flag deviations from good parts without judging whether a deviation is critical, and acceptable variation, e.g., of natural products or textures, overlaps with faint defects (Figure 29); linking anomaly scores to the defect catalogue and its limit samples remains largely manual [197, 198].
+- **Realistic benchmarks and logical anomalies.** Methods exceed 99% AUROC on MVTec AD [216], but state-of-the-art methods remain below 60% average AU-PRO on MVTec AD 2, which includes transparent objects, varying lighting, and very small defects [219], and logical anomalies, e.g., a missing or misplaced component, still require an understanding of the whole image [218].
+- **Thresholds and calibration of scores.** Production runs at one threshold, while benchmarks report threshold-independent metrics, and threshold-dependent results do not always follow them [219]; estimating low false reject rates reliably needs many good images, and scores drift with the process.
+- **Validation of zero-shot and synthetic-data methods.** Vision-language models detect anomalies without training images of the product [220, 221], and synthetic defects reduce the need for real defect images [212, 224], but how to prove their detection rate for a specific product without many real defective parts is still open.
+- **Alignment-dependent 3D results.** CAD comparisons depend on the alignment, i.e., the same scan can pass with a best-fit alignment and fail with a datum alignment (Figure 30), and automatic alignment of nearly flat or symmetric parts can stop in local minima [149, 227].
 
 ### Best practices
 

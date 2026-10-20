@@ -52,3 +52,16 @@
 | Point pair features | Model-based 3D detection that votes for the object pose using the distances and normal angles of point pairs [158]. |
 | Ray casting | Tracing rays from a sensor into a 3D model to compute the visible surfaces or a virtual scan [185]. |
 | Domain shift | Difference between the conditions of the training data and of operation, e.g., a new background, which can degrade a learned model. |
+| Caliper | One-dimensional edge measurement along a line perpendicular to an expected edge, averaged over several parallel lines [7]. |
+| Sub-pixel accuracy | Localization of an edge or feature more precisely than one pixel, e.g., by interpolating the gradient profile [187]. |
+| Guard band | Margin inside a tolerance limit that reduces the risk of accepting a nonconforming part at the cost of rejecting more conforming parts [199]. |
+| Consumer's / producer's risk | Probability of accepting a nonconforming item / of rejecting a conforming item [199]. |
+| Variation model | Golden-template comparison that learns a mean and a variation image from good parts and allows larger differences where good parts vary more [193]. |
+| Texture features | Statistics of the local gray-value pattern, e.g., co-occurrence features, local binary patterns, or Gabor filter responses [205, 206, 207]. |
+| Anomaly detection | Detection of deviations from a model of good parts, trained without defect images [197]. |
+| Anomaly score / anomaly map | Measure of how much an image / each pixel deviates from good parts. |
+| Memory bank | Stored features of good image patches; a new patch is scored by the distance to its nearest neighbor in the bank [140]. |
+| Structural / logical anomaly | Local physical flaw, e.g., a scratch / violation of a constraint of the whole scene, e.g., a missing or misplaced component [218]. |
+| AUROC / PRO | Area under the ROC curve, which measures how well scores rank defects above good parts / per-region overlap, which weights each defect region equally [215]. |
+| Deviation map (heat map) | Color-coded signed distance of every measured point from the CAD model. |
+| Best-fit / datum alignment | Registration that minimizes all deviations / that places the part on the datums defined by the drawing [227]. |
