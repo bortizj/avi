@@ -1,45 +1,86 @@
 # Best practices
 
-⚠️ TODO: Clean, refine and complete the best practices section. This should be brief but comprehensive. ⚠️
+This section summarizes the best practices of the AVI design process as a set of checklists, one for each step of Figure 11, where every design question is paired with a typical industrial answer and the references that support it. The checklists start with the requirements definition (0), continue with the main steps (1) to (7), and end with the model sandbox (S), so that they can be used as a review list during the design, the commissioning, and the audit of a system. Note that the typical answers are good starting points rather than fixed rules; every answer must be checked against the requirements of the specific application and proven on parts whose true condition is known. Before the checklists, we list the general principles that apply to all steps of the process; therefore, each checklist can also be read as the application of these principles to one step.
 
-## Image capture checklist
+## General principles
+
+The following table summarizes the principles that run through the whole design process.
+
+| **Principle** | **What it means in practice** |
+| :--- | :--- |
+| P1 \| Start from the requirements | Defect catalogue with limit samples, tolerances, required rates, cycle time, and interfaces defined before any hardware is chosen; every later design choice checked against them [49]. |
+| P2 \| Physics before algorithms | Contrast created with illumination, spectral band, optics, and part presentation in step (1); a defect that is hard to detect is often solved with better lighting rather than with a more complex algorithm [3]. |
+| P3 \| Treat the system as a measuring instrument | Traceable references, calibration records, Gage R&R or attribute agreement analysis, and verification at fixed intervals [48, 110]. |
+| P4 \| Simplest method that meets the requirements | Classical and learned methods combined as building blocks; each quality characteristic assigned to the method that checks it with the required reliability at the lowest complexity. |
+| P5 \| Decide from the costs of errors | Thresholds on calibrated scores derived from the costs of escapes, false rejects, and reviews; a Review zone for uncertain cases within the capacity of the reviewers [231, 235]. |
+| P6 \| Never Pass by default | Missing image, part not found, invalid measurement, or late result lead to Fail or Review; positive release at the reject station [259]. |
+| P7 \| Validate at the level of the part | Detection, escape, and false reject rates per defect type on test sets that are large enough for the claimed rates, e.g., 299 defective parts without escape for an escape rate below 1% with 95% confidence [246, 247]. |
+| P8 \| Version and trace everything | Recipe, calibration, pre-processing, models, thresholds, and decision logic versioned and stored with every result [110]. |
+| P9 \| Monitor in production | Inputs, outputs, and outcomes monitored with control charts; a random audit of accepted parts to find unknown escapes [196, 272]. |
+| P10 \| Keep humans in control | Review, labeling, and release by the people who are responsible for the quality; every change validated in the sandbox (S), run in shadow mode, and deployed under change control [47, 277]. |
+
+## (0) Requirements definition checklist
+
+The following table summarizes the design questions of the requirements definition together with typical industrial answers.
+
+| **Design question** | **Typical industrial answer** |
+| :--- | :--- |
+| Which defects must be found? | Defect catalogue with every defect type, its severity, e.g., critical, major, and minor, its limit samples, and the zones of the part where it matters [18, 25, 28, 49]. |
+| Which dimensions and tolerances are checked? | Characteristics and tolerances from the drawing with their datums; a decision rule for results close to the limits, e.g., guard bands [199, 203, 227]. |
+| Which performance is required? | Detection rate per defect type, maximum escape and false reject rates, and a Review rate that the reviewers can handle; test set sizes planned for the claimed rates [246, 247]. |
+| What does each error cost? | Costs of escapes, false rejects, and reviews agreed with production and quality engineering, since they define the thresholds of step (6) [231]. |
+| How fast must the system decide? | Cycle time, line speed, and distance from the camera to the reject station, which set the exposure of step (1) and the latency budget of step (7). |
+| Which products and variants are inspected? | All variants, colors, suppliers, and expected changeovers, since each of them needs data and validation (D10 of the comparison). |
+| What is the environment? | Ambient light, vibration, dust, temperature, cleaning, and available space, which decide the enclosure, the mounting, and the IP rating. |
+| How is the system integrated? | Signals, handshakes, and data interfaces with the PLC and the MES, preferably with the OPC UA machine vision information model [252]. |
+| What must be recorded? | Data per part, image retention, and audit trails, e.g., according to ISO 9001 and, in regulated industries, 21 CFR Part 11 [110, 262]. |
+| Which industry standards apply? | Standards for the inspection itself, e.g., USP <790> for injectables, IPC-A-610 for electronic assemblies, or ASTM D5430 for fabrics [18, 24, 28]. |
+| How is acceptance proven? | Acceptance test agreed in the specification, i.e., test parts with known condition, Gage R&R or attribute agreement analysis, and the rates at the operating threshold [48, 49]. |
+
+## (1) Image capture checklist
 
 The following table summarizes the design questions of step (1) together with typical industrial answers.
 
 | **Design question** | **Typical industrial answer** |
 | :--- | :--- |
 | What makes the defect physically different? | Color, gloss, shape, transparency, moisture, chemistry, temperature, or density; this decides the illumination and the band. |
-| How many pixels cover the smallest defect? | About 3 (2 to 4) pixels per smallest defect; this sets the sensor resolution for the given FOV [50, 51]. |
-| Which illumination geometry gives contrast? | Bright field, dark field, backlight, coaxial, dome, or structured light; test with real good and defective samples [53, 54]. |
-| Which wavelength band? | Visible with monochromatic LED by default; UV, NIR, SWIR, thermal, or X-ray when the defect requires it (Figure 13). |
-| Standard or telecentric lens? | Telecentric for precise dimensional measurement; standard for detection [75]. |
-| Area-scan or line-scan camera? | Area scan for discrete parts; line scan with encoder for webs, large parts, and cylinders [78, 79]. |
-| How short must the exposure be? | $t_{\text{exp}} \le b \cdot s / v$, typically with strobe and overdriven LEDs on fast lines [83, 85]. |
+| How many pixels cover the smallest defect? | At least three pixels across the smallest defect, e.g., about 1800 pixels across a 120 mm FOV for a 0.2 mm defect; this sets the sensor resolution [50, 51]. |
+| Which illumination geometry gives contrast? | Bright field, dark field, backlight, coaxial, dome, or structured light, tested with real good, defective, and limit samples [53, 54]; photometric stereo, deflectometry, or polarization for difficult surfaces [31, 58, 60]. |
+| Which wavelength band? | Visible with a monochrome camera and a monochromatic LED by default; color only when color is the target; UV, NIR, SWIR, thermal, or X-ray when the defect requires it (Figure 13). |
+| How is the band found for chemical properties? | Hyperspectral imaging during development to find the few informative wavelengths, followed by a simpler multispectral system [70]. |
+| Standard or telecentric lens? | Telecentric for precise dimensional measurement; standard for detection; lens resolution matched to the pixel size of the camera [74, 75]. |
+| Area-scan or line-scan camera? | Area scan for discrete parts; line scan with an encoder for webs, large parts, and cylinders [78, 79]. |
+| Global or rolling shutter? | Global shutter on moving lines; rolling shutter only with a short flash [80]. |
+| How short must the exposure be? | Short enough that the part moves only a fraction $b$ of a pixel, i.e., $t_{\text{exp}} \le b \cdot s / v$ with the pixel size $s$ on the part and the speed $v$, typically with strobes and overdriven LEDs on fast lines [83, 85]. |
 | How is the capture synchronized? | Hardware trigger from a part sensor or encoder to the camera and the light controller [85]. |
+| Does the interface carry the data rate? | Image size times parts per second below the link capacity; GigE Vision for long cables, USB3 Vision for short ones, and CoaXPress for very high rates [82]. |
 | How is ambient light excluded? | Enclosure, band-pass filter matched to the LED, and bright strobes [76]. |
-| Is 2D enough, or is 3D needed? | 3D when heights, volumes, or CAD deviations matter; laser triangulation or structured light for precision [56, 57]. |
-| How is the camera chosen and verified? | EMVA 1288 data for 2D cameras [81]; VDI/VDE 2634 tests for optical 3D systems [90]. |
+| Is the station built for the industrial environment? | Rigid mounts with locking screws, IP-rated housings with protective windows, and part handling that presents every part at the same position, orientation, and distance. |
+| Is 2D enough, or is 3D needed? | 3D when heights, volumes, or CAD deviations matter; laser triangulation or structured light for precision, stereo or time-of-flight for large volumes [56, 57, 87]. |
+| How is the camera chosen and verified? | EMVA 1288 data for 2D cameras [81]; acceptance and reverification tests according to ISO 10360-13 for optical 3D systems, which replaces the withdrawn VDI/VDE 2634 Part 2 [90, 104, 118]. |
 
-## System calibration checklist
+## (2) System calibration checklist
 
 The following table summarizes the design questions of step (2) together with typical industrial answers.
 
 | **Design question** | **Typical industrial answer** |
 | :--- | :--- |
 | Which quantities does the system report? | Positions and dimensions need geometric calibration and a pixel-to-mm mapping; fixed gray-value thresholds need flat-field correction; color decisions need color calibration. |
-| Is the camera model fitted correctly? | Planar target at the working distance with fixed focus and aperture, covering the whole FOV and tilted by about 30 to 45°, with at least 10 to 15 views; low RMS reprojection error [94, 95]. |
+| Is the camera model fitted correctly? | Planar target at the working distance with fixed focus and aperture, covering the whole FOV and tilted by about 30 to 45°, with at least 10 to 15 views; low RMS reprojection error, followed by the measurement of an independent reference [94, 95]. |
 | Is the reference traceable? | Certified glass or ceramic target, gauge blocks, or golden parts with certificates; calibration records are kept [96, 110]. |
 | Is a single mm/px factor enough? | Only after distortion correction, for a plane perpendicular to the optical axis at a fixed distance; otherwise a homography, a telecentric lens, or 3D measurement [74, 93]. |
-| Is the measurement capable? | Gage R&R with %GRR below 10% (10 to 30% conditionally); resolution of at least one tenth of the tolerance [48]. |
+| Is the measurement capable? | Gage R&R with %GRR below 10% (10 to 30% conditionally); resolution of at least one tenth of the tolerance, typically with sub-pixel measurement [7, 48]. |
 | Are the camera settings fixed? | Auto-exposure, auto-gain, and auto white balance off; trigger delay, strobe inside the exposure, motion blur, and trigger-to-image counts checked at line speed [83]. |
 | Are line-scan pixels square? | Encoder step equal to the pixel size across the line; scale in the direction of motion calibrated with markers at a known distance [97]. |
 | Is the image uniform and stable? | Dark-frame and flat-field correction [98]; constant-current lights, warm-up, and a monitored reference patch [113]. |
-| Are colors comparable between cameras and days? | Fixed white balance and a color correction matrix fitted to a reference chart; ΔE00 tolerance agreed per product [99, 101]. |
-| Are all sensors in one coordinate system? | Common calibration target for multiple cameras, hand-eye calibration for robots, and an encoder-to-image mapping for conveyors [95, 117]. |
-| Is the 3D sensor verified? | Factory intrinsic calibration plus user extrinsic calibration [103]; acceptance and reverification tests according to ISO 10360-13 [104]. |
-| When is the system recalibrated? | Verification at every shift with a golden part or reference target; full recalibration after any change of the optical chain, a collision, or a failed verification [95, 110]. |
+| Are colors comparable between cameras and days? | Fixed white balance and a color correction matrix fitted to a reference chart; ΔE00 tolerance agreed per product [99, 101]; color calibration repeated when lights are replaced [113]. |
+| Are spectral and thermal cameras calibrated? | Reflectance calibration with white and dark references for multispectral and hyperspectral cameras [115]; blackbody references for absolute temperatures [116]. |
+| Are all sensors in one coordinate system? | Common calibration target for multiple cameras, hand-eye calibration for robots, and an encoder-to-image mapping for conveyors [95, 117]; fixed reference marks in the FOV to detect a moved camera. |
+| Is the 3D sensor verified? | Factory intrinsic calibration plus user extrinsic calibration [103]; resolution not confused with accuracy; acceptance and reverification tests according to ISO 10360-13 [104]. |
+| When is the system recalibrated? | Verification at every shift with a golden part or reference target; full recalibration after any change of the optical chain, a collision, or a failed verification [95, 109]. |
+| Is each result linked to its calibration? | Calibration files versioned with the serial numbers of camera and lens, date, reference, and results; each inspection record points to the active calibration [110]. |
 
-## Image enhancement and pre-processing checklist
+## (3) Image enhancement and pre-processing checklist
 
 The following table summarizes the design questions of step (3) together with typical industrial answers.
 
@@ -61,7 +102,7 @@ The following table summarizes the design questions of step (3) together with ty
 | Does the chain fit the cycle time? | Separable and running-sum filters, processing of regions of interest only, in-camera correction, and GPU processing for heavy filters. |
 | How is the chain validated and traced? | Detection, escape, and false reject rates on a test set with and without each operation; parameters versioned with the calibration data [48, 110]. |
 
-## Region of interest and object detection checklist
+## (4) Region of interest and object detection checklist
 
 The following table summarizes the design questions of step (4) together with typical industrial answers.
 
@@ -84,7 +125,7 @@ The following table summarizes the design questions of step (4) together with ty
 | How is the 6D pose found for CAD comparison? | Point pair features or a learned pose estimator for the initial pose, ICP for refinement, and ray casting for the visible region [149, 158, 159, 185]. |
 | Are detection results traceable and monitored? | Detector version stored with each result; match scores logged and trended to detect drift [110]. |
 
-## Feature extraction and anomaly detection checklist
+## (5) Feature extraction and anomaly detection checklist
 
 The following table summarizes the design questions of step (5) together with typical industrial answers.
 
@@ -107,7 +148,7 @@ The following table summarizes the design questions of step (5) together with ty
 | Are the features used beyond the decision? | Measurements and scores logged per part for statistical process control, drift monitoring, and the sandbox (S) [196]. |
 | Are models and thresholds traceable? | Model, threshold, calibration, and pre-processing versions stored with every result; revalidation after changes of product, supplier, or lighting [110]. |
 
-## Decision fusion and post-processing checklist
+## (6) Decision fusion and post-processing checklist
 
 The following table summarizes the design questions of step (6) together with typical industrial answers.
 
@@ -130,7 +171,7 @@ The following table summarizes the design questions of step (6) together with ty
 | How is the decision verified in production? | Golden parts, sampling of accepted parts, e.g., AQL 0.65% for injectable drugs [11, 26], and control charts of the reject and Review rates [196]. |
 | Is the decision logic traceable? | Decision table, thresholds, and suppression rules versioned with models and calibration; reason code, evidence, and versions logged with every decision [110]. |
 
-## Action and closed feedback loop checklist
+## (7) Action and closed feedback loop checklist
 
 The following table summarizes the design questions of step (7) together with typical industrial answers.
 
@@ -158,7 +199,7 @@ The following table summarizes the design questions of step (7) together with ty
 | How are models and calibrations updated? | Validation in the sandbox (S), shadow mode, versioned deployment with rollback, and change control; static models in regulated, critical applications [110, 276, 277]. |
 | How is 3D feedback used? | Metrology reports in QIF, tool offsets and build compensation from deviation maps, and repair paths from defect positions [16, 31, 261, 278]. |
 
-## Model sandbox checklist
+## (S) Model sandbox checklist
 
 The following table summarizes the design questions of step (S) together with typical industrial answers.
 
@@ -180,3 +221,7 @@ The following table summarizes the design questions of step (S) together with ty
 | How is a model retrained? | On the complete versioned dataset, not only on new data, to keep known defect types [302]; static models in critical applications [277]. |
 | How is a candidate released? | Offline replay of steps (3) to (6), part-level rates per defect type with confidence bounds [246, 247], comparison with production, shadow mode, versioned deployment, and rollback [276, 277]. |
 | How are 3D data labeled? | Labels on height maps or calibrated 2D images transferred to the points, regions defined on the CAD model, simulated scans for training, and real scans for validation [185, 228]. |
+
+## Where the checklists end
+
+These checklists summarize the practices that are established in industry today, and they are sufficient for most inspection tasks under controlled conditions. However, some questions do not yet have a typical industrial answer, e.g., how to certify a learned pre-processing, how to prove the detection rate of a zero-shot or synthetic-data method, how to estimate the escape rate of unknown defect types, or how to update models frequently under change control. These questions are discussed in the [Open problems](README.md#open-problems); where they apply, the general principles above, i.e., validation at the level of the part, traceability, monitoring, and human control, are the safest guide.
