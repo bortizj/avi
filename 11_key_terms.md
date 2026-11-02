@@ -36,6 +36,7 @@
 | Datasheet / model card | Documentation of a dataset / of a trained model, its intended use and its performance [298, 301]. |
 | DBSCAN | Density-based clustering with a radius eps and a minimum number of points, which also labels isolated points as noise [165]. |
 | Dead time | Delay between a change of the process and its first effect on the inspection result. |
+| Defect catalogue | Document that lists every defect type with its description, severity class, acceptance limits per zone and limit samples [49]. |
 | Deflectometry | Measurement of a glossy surface by observing how it reflects a known light pattern. |
 | Deviation map (heat map) | Color-coded signed distance of every measured point from the CAD model. |
 | Digital I/O handshake | Exchange of trigger, status and result signals between a vision system and a PLC, e.g., Ready, Busy, Result Valid and Error. |
@@ -48,6 +49,7 @@
 | EWMA | Exponentially weighted moving average, a control chart that detects small, slow drifts of a process [196]. |
 | Extreme clicking | Box annotation by clicking the four extreme points of an object instead of drawing a rectangle [282]. |
 | Extrinsic parameters | Rotation and translation that describe the pose of a camera relative to a world, robot or other camera coordinate system. |
+| Factory / site acceptance test (FAT / SAT) | Verification of the requirements at the site of the supplier / on the production line under real conditions. |
 | Fail-safe decision | Design rule by which missing, invalid or late results lead to Fail or Review, never to Pass. |
 | False call | Defect reported by an inspection system that a review finds acceptable; common term in AOI [243]. |
 | False reject (false positive) | Good part that the inspection system rejects. |
@@ -101,10 +103,12 @@
 | Reject confirmation | Sensor check that a rejected part has actually left the line, e.g., entered the reject bin [259]. |
 | Reject option | Option of a classifier to withhold a decision when the evidence is ambiguous; the basis of the Review class [235]. |
 | Reprojection error | Distance between the detected calibration points and the points predicted by the calibrated camera model. |
+| Requirement / system specification | Document of the user that states what the system must achieve / document of the supplier that states how it will be achieved [49]. |
 | Run-to-run control | Feedback control that adjusts the process settings of the next run or part from the measurements of previous ones [268]. |
 | Score calibration | Mapping of model scores to probabilities that match the observed frequency of defects, e.g., Platt scaling or temperature scaling [232, 233]. |
 | Selective labels | Situation where outcomes are only observed for the cases selected by the current decision, e.g., only rejected parts are reviewed [272]. |
 | Semantic / instance segmentation | Assignment of a class / of an individual object to every pixel or point. |
+| Severity class | Rating of the consequence of a defect, e.g., critical, major or minor [25]. |
 | Shadow mode | Operation of a new model version in parallel with the current one, without acting on the parts. |
 | Shape-based matching | Template matching that compares edge directions instead of gray values, robust to occlusion, clutter and illumination changes [152]. |
 | SLAM | Simultaneous localization and mapping. |
@@ -115,6 +119,7 @@
 | Structural / logical anomaly | Local physical flaw, e.g., a scratch / violation of a constraint of the whole scene, e.g., a missing or misplaced component [218]. |
 | Sub-pixel accuracy | Localization of an edge or feature more precisely than one pixel, e.g., by interpolating the gradient profile [187]. |
 | Sum rule / majority vote | Decision-level fusion that adds the scores / counts the decisions of several sources [239]. |
+| Surface zone | Area of a part with its own acceptance limits according to its visibility or function, e.g., surfaces A to D [306]. |
 | Tampering | Adjusting a stable process by every single deviation, which increases its variation [269]. |
 | Texture features | Statistics of the local gray-value pattern, e.g., co-occurrence features, local binary patterns or Gabor filter responses [205, 206, 207]. |
 | Top-hat transform | Morphological operation that keeps bright (white top-hat) or dark (black top-hat) structures smaller than a structuring element. |

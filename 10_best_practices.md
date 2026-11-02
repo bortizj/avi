@@ -25,7 +25,8 @@ The following table summarizes the design questions of the requirements definiti
 
 | **Design question** | **Typical industrial answer** |
 | :--- | :--- |
-| Which defects must be found? | Defect catalogue with every defect type, its severity, e.g., critical, major and minor, its limit samples and the zones of the part where it matters [18, 25, 28, 49]. |
+| How are the requirements documented? | Requirement specification of the user (what) and system specification of the supplier (how) according to VDI/VDE/VDMA 2632 Part 2 [49]; every requirement measurable and paired with its verification method [305]. |
+| Which defects must be found? | Defect catalogue with every defect type, its severity, e.g., critical, major and minor, its limit samples and the zones of the part where it matters [18, 25, 28, 49, 306]; human visibility criteria translated into measurable limits; explicit handling of unknown deviations. |
 | Which dimensions and tolerances are checked? | Characteristics and tolerances from the drawing with their datums; a decision rule for results close to the limits, e.g., guard bands [199, 203, 227]. |
 | Which performance is required? | Detection rate per defect type, maximum escape and false reject rates and a Review rate that the reviewers can handle; test set sizes planned for the claimed rates [246, 247]. |
 | What does each error cost? | Costs of escapes, false rejects and reviews agreed with production and quality engineering, since they define the thresholds of step (6) [231]. |
@@ -35,7 +36,7 @@ The following table summarizes the design questions of the requirements definiti
 | How is the system integrated? | Signals, handshakes and data interfaces with the PLC and the MES, preferably with the OPC UA machine vision information model [252]. |
 | What must be recorded? | Data per part, image retention and audit trails, e.g., according to ISO 9001 and, in regulated industries, 21 CFR Part 11 [110, 262]. |
 | Which industry standards apply? | Standards for the inspection itself, e.g., USP <790> for injectables, IPC-A-610 for electronic assemblies or ASTM D5430 for fabrics [18, 24, 28]. |
-| How is acceptance proven? | Acceptance test agreed in the specification, i.e., test parts with known condition, Gage R&R or attribute agreement analysis and the rates at the operating threshold [48, 49]. |
+| How is acceptance proven? | Acceptance test agreed in the specification, i.e., test parts with known condition, Gage R&R or attribute agreement analysis and the rates at the operating threshold [48, 49, 303, 304]; factory and site acceptance tests with a traceability matrix from requirements to results [305]. |
 
 ## (1) Image capture checklist
 
