@@ -14,7 +14,7 @@ The detailed key terminology is available here:
 
 ## Definitions and purpose
 
-In this section, we define manual (classical) and automatic visual inspection, each followed by a few industrial examples. The examples are paired, i.e., each automated example solves the same inspection task as one of the manual examples.
+In this section, we define manual and automatic visual inspection, each followed by a few industrial examples. 
 
 The detailed definitions, purpose and examples are available here: 
 [Definitions and purpose](01_definitions.md)
