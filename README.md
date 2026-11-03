@@ -1,7 +1,7 @@
 # Automatic visual inspection
 **Author: Benhur Ortiz-Jaramillo assisted by Claude [Opus 5.5]**
 
-> This repository contains reference material and guidelines for designing and architecting automatic visual inspection (AVI) systems. This is intended for engineers and students with basic programming and mathematics skills
+> This repository contains reference material and guidelines for designing and architecting automatic visual inspection (AVI) systems. This is intended for engineers and students with basic mathematics skills.
 
 Automatic visual inspection (AVI) is a quality control technique used in manufacturing. This technique has become a critical component of modern manufacturing and quality control processes [3, 4]. AVI uses cameras, lighting and computational algorithms with the purpose of checking products without the need of a human inspector. AVI enables the automatic detection of defects, the measurement of dimensions and the verification of compliance against quality standards [1, 2]. In general, AVI enhances product reliability and safety while lowering operational costs and reducing human error [4, 5]. The scope of AVI spans a wide range of industries, e.g., food processing, electronics, automotive, pharmaceuticals, textiles, additive manufacturing and civil infrastructure, among others. Additionally, AVI is a key enabler of zero-defect manufacturing (ZDM), i.e., a quality strategy that aims to detect, repair, predict and prevent defects so that no defective product leaves the factory [6]. Therefore, understanding the principles, applications and benefits of AVI is essential for modern industrial automation applications.
 
