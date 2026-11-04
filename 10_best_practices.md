@@ -182,7 +182,7 @@ The following table summarizes the design questions of step (7) together with ty
 | Who controls the actuator? | The PLC, programmed according to IEC 61131-3, fires the reject and stops the line; the vision system delivers decisions and data [250, 251]. |
 | How are vision system and PLC connected? | Digital I/O handshake with trigger, Ready, Busy, Result Valid, result bits, Error and heartbeat; fieldbus or OPC UA for data, preferably with the machine vision information model [252, 253]. |
 | Is every result bound to its part? | Part counter or identifier returned with each result; exactly one result per trigger checked by the PLC; alarm on missed or double triggers. |
-| Is the decision available in time? | Latency budget $t_{\text{lat}} \le d/v - t_{\text{act}} - t_{\text{margin}}$, measured at maximum line speed and full load, including queueing and rare long delays (Figure 35). |
+| Is the decision available in time? | Latency budget $t_{\text{lat}} \le d/v - t_{\text{act}} - t_{\text{margin}}$, measured at maximum line speed and full load, including queueing and rare long delays (Figure 36). |
 | How is the part tracked to the actuator? | Encoder-based tracking with a FIFO queue or shift register instead of a fixed time delay [258]; distance and encoder checked after maintenance. |
 | Is the reject fail-safe? | Positive release, i.e., only an explicit and valid Pass is accepted; reject confirmation, bin-full, bin-lock and air-pressure monitoring; faults reset only by authorized staff [259]. |
 | Is the whole chain tested? | Test parts that must be rejected, e.g., at every shift start, through camera, decision, tracking, actuator and confirmation. |
@@ -210,10 +210,10 @@ The following table summarizes the design questions of step (S) together with ty
 | Can the annotation effort be reduced? | Review decisions stored as labels; weak or mixed supervision with few masks [201]; model-assisted pre-labels that humans correct [177, 178]. |
 | Is there an annotation guideline? | Derived from the defect catalogue with limit samples; classes, look-alike classes, label geometry and an uncertain option; versioned with the datasets [25]. |
 | Are the labels consistent? | Golden set for every annotator; double labeling with adjudication of a share of the images; Cohen's kappa above about 0.75 and IoU tracked per annotator [48, 285, 286]. |
-| Do the labels follow the defect catalogue? | Checked against expert labels and limit samples, since agreement does not reveal a bias that all annotators share (Figure 39). |
+| Do the labels follow the defect catalogue? | Checked against expert labels and limit samples, since agreement does not reveal a bias that all annotators share (Figure 40). |
 | How are label errors found? | Likely errors ranked by the disagreement between labels and out-of-sample predictions and reviewed by humans [287]; test labels never corrected automatically by the model. |
 | Which images are labeled? | Review cases, uncertainty and diversity with a random share in every batch [288, 292]; new products, suppliers and conditions first. |
-| How are unknown defect types found? | Random share of the labeling batches and the audit of accepted parts of step (7) [272] (Figure 40). |
+| How are unknown defect types found? | Random share of the labeling batches and the audit of accepted parts of step (7) [272] (Figure 41). |
 | Is the human feedback used beyond retraining? | Review and audit results analyzed by reason code, position, size and time; changes of capture, calibration, pre-processing or decision logic where they are more effective. |
 | How are unlabeled and synthetic data used? | Pseudo-labels, pasted defects and rendered CAD data for training only [224, 294, 295]; validation on real images with expert labels. |
 | How are the datasets split? | By part, lot and time; protected test set with verified labels, never used for development [277, 299]. |
