@@ -28,7 +28,7 @@ In supervised learning, a model learns a mapping from images to outputs from exa
 
 The annotation type describes what a label records about an image, and it ranges from one class per image to a precise outline of every defect or a label for every 3D point. The richer the annotation, the more the model can learn about where a defect is and how large it is, but the more time each label takes. Measurements on public datasets show the scale of these differences. For instance, drawing a bounding box in the classical way took about 35 seconds per object, while the extreme clicking method (where the annotator clicks on the top, bottom, left and right extreme points of the object) reduced this to about 7 seconds [282]. In contrast, an accurate outline of a single object takes between about 54 and 79 seconds [283], and the fine pixel-level annotation of street scenes, including its quality control, took more than 1.5 hours per image on average [284]. Figure 39 shows the main annotation types on a simulated image of a brushed metal surface with a scratch, a dent and a stain.
 
-[![annotation-types](assets/model-sandbox/annotation-types.png)](assets/model-sandbox/annotation-types.png)
+![annotation-types](/assets/model-sandbox/annotation-types.png)
 
 *Figure 39. Annotation types on a simulated metal surface, where an image-level label (a) records only the decision, bounding boxes (b) add the location and class of each defect, pixel masks (c) add their shape and size, and two annotators (d) outline the same fading scratch with an IoU of 0.61 and lengths of 13.4 mm and 17.0 mm, i.e., on different sides of a 15 mm limit. The images in this example were simulated using Python, NumPy, SciPy and OpenCV.*
 
@@ -67,7 +67,7 @@ where $p_o$ is the observed share of images on which they agree and $p_e$ is the
 
 Several practices keep the label quality high. First, a golden set of images with labels agreed by experts is mixed into the work of every annotator, which measures each annotator over time, similar to the known test parts in the Review queue of step (6). Second, a share of the images is labeled by two annotators, and every disagreement is decided by an expert, termed adjudication. Third, the trained model itself helps to find label errors. For instance, confident learning estimates which labels are likely wrong from the disagreement between the labels and the out-of-sample predictions of a model, so that these images can be reviewed first [287]. Note that a model must never be used to correct its own test labels automatically, since this would remove exactly the cases where the model is wrong.
 
-[![label-consistency](assets/model-sandbox/label-consistency.png)](assets/model-sandbox/label-consistency.png)
+![label-consistency](/assets/model-sandbox/label-consistency.png)
 
 *Figure 40. Labels of four annotators for simulated scratches with a 15 mm limit, where a guideline with limit samples gives consistent labels (a) and a kappa of 0.93 instead of 0.60 (b), and models trained on these labels learn different boundaries (c), which turns inconsistent and biased labels into escapes, while double labeling with adjudication removes only part of the bias (d). The images in this example were simulated using Python, NumPy and scikit-learn.*
 
@@ -89,7 +89,7 @@ Due to the fact that deep networks are retrained in batches rather than after ev
 
 However, active learning has two pitfalls that matter in inspection. First, a model can only be uncertain about what it already knows. That is, a defect type that looks nothing like the defects in the labeled set receives a confident Pass and is never selected, which is the same blind spot as the selective labels of step (7) [272]. Second, the selected images are not a random sample of production. Therefore, they must not be used to estimate the escape and false reject rates, which require a test set that represents production, as discussed in step (6). For both reasons, a part of every labeling batch is chosen at random, and the test set is drawn and labeled independently of the active learning loop.
 
-[![active-learning](assets/model-sandbox/active-learning.png)](assets/model-sandbox/active-learning.png)
+![active-learning](/assets/model-sandbox/active-learning.png)
 
 *Figure 41. Active learning on simulated pools of 30,000 images with 1.5% defective parts and a rare defect type, where random sampling labels mostly good parts (a) and active learning concentrates the labels at the class boundaries (b), reaching 10% escapes with 350 instead of more than 1,000 labels (c), while finding the rare type depends on exploration (d). The images in this example were simulated using Python, NumPy and scikit-learn.*
 

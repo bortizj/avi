@@ -10,14 +10,14 @@ This document serves as reading material on how to design and architect AVI solu
 ## Key terms used in this document
 
 The detailed key terminology is available here: 
-[Key terminology](11_key_terms.md)
+[Key terminology](/docs/11_key_terms.md)
 
 ## Definitions and purpose
 
 In this section, we define manual and automatic visual inspection, each followed by a few industrial examples. 
 
 The detailed definitions, purpose and examples are available here: 
-[Definitions and purpose](01_definitions.md)
+[Definitions and purpose](/docs/01_definitions.md)
 
 ## Comparison between manual and automatic visual inspection
 
@@ -75,57 +75,57 @@ The process is iterative, since problems found in later steps often require chan
 
 Requirements definition is the step where the goals and constraints of the AVI system are established. Its objective is to specify the defect catalogue, the tolerances, the required detection and false reject rates, the cycle time and the interfaces to the production line [49]. This step sets the base for all subsequent design choices. Requirements definition ensures that the system meets the desired performance and integrates with the manufacturing process.
 
-The detailed requirements definition step is available here: [(0) Requirements definition](13_requirements_def.md)
+The detailed requirements definition step is available here: [(0) Requirements definition](/docs/13_requirements_def.md)
 
 ### (1) Image capture
 
 Image capture is the step where the physical part becomes data. Its objective is to acquire visual data with a high signal-to-noise ratio, i.e., images or point clouds in which the defects of interest stand out clearly from the part, the background and the sensor noise.
 
 The detailed image capture step is available here: 
-[(1) Image capture](02_image_capture.md)
+[(1) Image capture](/docs/02_image_capture.md)
 
 ### (2) System calibration
 
 System calibration is the step where the captured images are related to the real world. Its objective is to normalize geometry, scale and color, i.e., to make sure that positions can be converted into millimeters and that gray values and colors mean the same on every camera, in every part of the image and on every day.
 
 The detailed system calibration step is available here:
-[(2) System calibration](03_system_calibration.md)
+[(2) System calibration](/docs/03_system_calibration.md)
 
 ### (3) Image enhancement and pre-processing
 
 Image enhancement and pre-processing is the step where the calibrated images are prepared for analysis. Its objective is to enhance contrast and remove noise, i.e., to make the anomalies and the edges to be measured stand out from the sensor noise, the shading and the texture of the part, without removing the anomalies themselves.
 
-The detailed image enhancement and pre-processing step is available here: [(3) Image enhancement and pre-processing](04_image_enhancement.md)
+The detailed image enhancement and pre-processing step is available here: [(3) Image enhancement and pre-processing](/docs/04_image_enhancement.md)
 
 ### (4) Region of interest and object detection
 
 Region of interest and object detection is the step where the part (or the feature to be inspected) is found in the pre-processed data. Its objective is to isolate the target part or feature, i.e., to decide whether the part is there, where it is and which pixels or points belong to it, so that the later steps inspect the right area in the coordinate system of the part.
 
-The detailed object detection step is available here: [(4) Region of interest and object detection](05_object_detection.md)
+The detailed object detection step is available here: [(4) Region of interest and object detection](/docs/05_object_detection.md)
 
 ### (5) Feature extraction and anomaly detection
 
 Feature extraction and anomaly detection is the step where the regions of interest found in step (4) are analyzed in detail. Its objective is to detect flaws and measure dimensions, i.e., to turn the pixels or points of a part into (i) measured dimensions with their uncertainty, (ii) lists of known defects with their position and size, and, (iii) anomaly scores that show how far the part deviates from good parts, which step (6) then combines into one decision.
 
-The detailed anomaly detection step is available here: [(5) Feature extraction and anomaly detection](06_anomaly_detection.md)
+The detailed anomaly detection step is available here: [(5) Feature extraction and anomaly detection](/docs/06_anomaly_detection.md)
 
 ### (6) Decision fusion and post-processing
 
 Decision fusion and post-processing is the step where all the evidence about a part is combined into one decision. Its objective is to make a definitive Pass, Fail or Review call, i.e., to turn the measurements, defect lists and anomaly scores of every view, sensor and time step into a single explainable decision per part. In this step, the thresholds follow the costs of escapes and false rejects, false alarms are suppressed by fusing the evidence in the coordinate system of the part, and the uncertain cases are sent to a human inspector.
 
-The detailed decision fusion step is available here: [(6) Decision fusion and post-processing](07_decision_fusion.md)
+The detailed decision fusion step is available here: [(6) Decision fusion and post-processing](/docs/07_decision_fusion.md)
 
 ### (7) Action and closed feedback loop
 
 Action and closed feedback loop is the step where the decision of step (6) changes something in the real world. Its objective is to sort hardware, log data and trigger alerts, i.e., to remove every rejected part from the line with a fail-safe and tracked actuator, to record every decision with its evidence for complete audit trails and to inform people and machines in time. Additionally, this step closes two feedback loops: (i) one to the production process (e.g., with statistical process control and feedback control), and, (ii) one to the inspection system itself, where human reviews, audits and monitoring trigger recalibrations and controlled model updates in the model sandbox (S).
 
-The detailed action step is available here: [(7) Action and closed feedback loop](08_action.md)
+The detailed action step is available here: [(7) Action and closed feedback loop](/docs/08_action.md)
 
 ### (S) Model sandbox
 
 Model sandbox is the supporting step where humans teach and check the inspection system. Its objective is to improve and validate the models with human input by applying the following tasks: (i) turn the images and human decisions collected by steps (6) and (7) into consistent labels that follow the defect catalogue and its limit samples, (ii) select the images worth labeling with an active learning data pipeline that keeps a random share for unknown defect types, (iii) decide whether a problem is best solved with new training data or with a change of the capture, calibration, pre-processing or decision logic, and, (iv) release every change only after an independent part-level validation on protected test data, followed by shadow mode and change control.
 
-The detailed model sandbox step is available here: [(S) Model sandbox](09_model_sandbox.md)
+The detailed model sandbox step is available here: [(S) Model sandbox](/docs/09_model_sandbox.md)
 
 ## Past projects overview
 
@@ -138,12 +138,12 @@ This section summarizes the key findings, highlights the open problems and provi
 ### Open problems
 
 The detailed open problems are available here: 
-[Open problems](12_open_problems.md)
+[Open problems](/docs/12_open_problems.md)
 
 ### Best practices
 
 The detailed best practices are available here: 
-[Best practices](10_best_practices.md)
+[Best practices](/docs/10_best_practices.md)
 
 ### Conclusions
 
@@ -160,4 +160,4 @@ The field is moving quickly. Foundation models, vision-language models and synth
 ## References
 
 The detailed references are available here: 
-[References](00_references.md)
+[References](/docs/00_references.md)

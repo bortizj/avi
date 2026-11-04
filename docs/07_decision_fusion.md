@@ -35,7 +35,7 @@ A single threshold forces the system to decide every part, including those whose
 
 More recently, conformal prediction provides a way to build such zones with a statistical guarantee. From a calibration set, it computes for every part a set of plausible classes that contains the true class with a chosen probability (e.g., 99%), and a part whose set contains both good and defective is sent to Review [237]. Note that this guarantee holds only as long as the production data resembles the calibration data, which is why the calibration must be monitored like every other model parameter.
 
-[![decision-thresholds](assets/decision-fusion/decision-thresholds.png)](assets/decision-fusion/decision-thresholds.png)
+![decision-thresholds](/assets/decision-fusion/decision-thresholds.png)
 
 *Figure 32. Pass, Review and Fail decisions for simulated anomaly scores, where the expected cost of each decision (b) defines two thresholds, and the Review zone reduces both escapes and false rejects (c) and (d) at the price of human reviews. The images in this example were simulated using Python, NumPy and SciPy.*
 
@@ -73,7 +73,7 @@ $$\Lambda(\mathbf{x}) = \sum_{v=1}^{V} \log \frac{p\big(s_v(\mathbf{x}) \mid \te
 
 where $s_v(\mathbf{x})$ is the score of view $v$ at the location $\mathbf{x}$ on the part, and where a view that sees the location but finds nothing contributes negative evidence [231, 239]. Note that the views of a defect are rarely fully independent (e.g., a low-contrast defect is faint in all views), and therefore the threshold on the fused evidence is set on validation data rather than computed from the formula. The same principle is reflected in recent multi-view datasets for anomaly detection. For instance, Real-IAD captures each object from several views and evaluates the detection per sample, i.e., over all views of the same part, rather than per image [216].
 
-[![multi-view-fusion](assets/decision-fusion/multi-view-fusion.png)](assets/decision-fusion/multi-view-fusion.png)
+![multi-view-fusion](/assets/decision-fusion/multi-view-fusion.png)
 
 *Figure 33. Multi-view inspection of a simulated cylindrical part with six cameras, where glare is seen by one camera only while a defect is seen by both cameras that cover it (b), so that fusing the evidence in part coordinates reduces the escapes at 1% false rejects from 55.4% to 9.3% (c). The images in this example were simulated using Python and NumPy.*
 
@@ -97,7 +97,7 @@ $$P_{\text{fa}} = \sum_{j=M}^{N} \binom{N}{j} \, \alpha^{j} \, (1-\alpha)^{N-j},
 
 e.g., with $\alpha = 2\%$, at least one and at least three false candidates in 20 frames occur in 33% and 0.7% of the sequences, respectively. Note that the formula requires independent frames. That is, a static artifact (e.g., a mark on the glass) appears in every frame and is not suppressed by persistence but by a model of the static background. When objects move, the candidates of consecutive frames are linked into tracks, e.g., with a nearest-neighbor association and a motion model such as the Kalman filter, which predicts the next position of each object from its previous positions [242], and the track itself (i.e., its length, its speed and its direction) becomes evidence. This is the principle of the automated inspection of injectable drugs, where the container is spun and stopped, so that particles keep moving with the liquid while marks on the glass stand still [27, 42].
 
-[![temporal-filtering](assets/decision-fusion/temporal-filtering.png)](assets/decision-fusion/temporal-filtering.png)
+![temporal-filtering](/assets/decision-fusion/temporal-filtering.png)
 
 *Figure 34. Temporal filtering of a simulated image sequence of a vial after the spin stop, where the temporal median removes the marks on the glass (b), tracking separates a sinking particle from a rising bubble (c), and the track rules remove the false rejects while allowing a lower per-frame threshold (d). The images in this example were simulated using Python, NumPy and SciPy.*
 
@@ -125,7 +125,7 @@ Finally, every Review decision is stored together with its evidence, and it is t
 
 The performance of an AVI system is defined by its decisions per part, and not by the accuracy of a single model or a single image. Therefore, the validation counts the detection rate, the escape rate and the false reject rate (as defined in the comparison section), together with the Review rate and the outcome of the reviews, on a test set of parts whose true condition is known. These rates are reported per defect type and per severity class, due to the fact that an excellent average can hide a defect type that is never detected. The test set must contain enough defective parts, which is often the hardest requirement to meet. When a test with $n$ defective parts shows no escape, the true escape rate is not proven to be zero. The one-sided upper confidence bound of Clopper and Pearson gives the largest escape rate that is still compatible with the result [246], and, for zero escapes at 95% confidence, it is approximately $3/n$, which is known as the rule of three [247]. For instance, to show an escape rate below 1% with 95% confidence, at least 299 defective parts without any escape are needed, or 473 if one escape occurs.
 
-[![decision-validation](assets/decision-fusion/decision-validation.png)](assets/decision-fusion/decision-validation.png)
+![decision-validation](/assets/decision-fusion/decision-validation.png)
 
 *Figure 35. Statistical limits of validating an inspection decision, where the confidence bound (a) shows how many defective parts are needed to prove an escape rate, small test sets give widely spread detection rates (b), and repeated inspections sort the test units into accept, gray and reject zones (c). The images in this example were simulated using Python, NumPy and SciPy.*
 

@@ -50,7 +50,7 @@ Nonlinear filters treat edges and isolated outliers differently from the flat su
 
 The most powerful classical denoisers search the whole image for similar patches. Non-local means replaces each pixel by a weighted average of pixels whose surrounding patches look similar, even if they are far away [128], while BM3D groups similar blocks into three-dimensional stacks and filters each stack jointly in a transform domain [129]. Deep learning denoisers go one step further. For instance, DnCNN learns the noise itself with a residual convolutional network and outperforms BM3D on Gaussian noise of unknown strength [130]. Additionally, Noise2Noise shows that a denoising network can be trained from pairs of noisy images only, without any clean target [131], which is attractive in inspection due to the fact that two captures of the same part provide such a pair without extra effort. However, these methods rely on the assumption that the true image is made of repeated typical structures, and a defect is by definition rare and atypical. Therefore, strong non-local or learned denoising can smooth a real defect into the background or replace it with a plausible good texture, which is the opposite of what an inspection needs. Buades et al. proposed the method noise, i.e., the difference between the input image and its filtered version, with the purpose of evaluating denoisers. That is, for a good denoiser, the method noise should look like pure noise and contain no structure of the image [128]. In AVI, the method noise of images with known defects is a simple and effective check of whether a filter removes defects.
 
-[![preprocessing-denoising](assets/image-capture-preprocessing/preprocessing-denoising.png)](assets/preprocessing-denoising.png)
+![preprocessing-denoising](/assets/image-capture-preprocessing/preprocessing-denoising.png)
 
 *Figure 19. Effect of frame averaging and spatial filters on a simulated metal surface with a thin scratch, a small pit and 0.1% hot pixels, where the contrast-to-noise ratio (CNR) of the scratch and the number of bright false blobs are given above each image. The images in this example were simulated using Python and OpenCV.*
 
@@ -74,7 +74,7 @@ The flat-field correction of step (2) removes the shading caused by the camera a
 
 The morphological top-hat transforms combine both steps. That is, the white top-hat (the image minus its opening) keeps bright structures smaller than the structuring element, while the black top-hat (the closing minus the image) keeps dark structures smaller than the structuring element [134]. Two rules apply to all of these methods. First, the filter or structuring element must be clearly larger than the largest defect, since otherwise the background estimate follows the defect and removes it. Second, division amplifies the noise where the background is dark. Therefore, dark regions of the part become noisier after normalization.
 
-[![preprocessing-contrast](assets/image-capture-preprocessing/preprocessing-contrast.png)](assets/preprocessing-contrast.png)
+![preprocessing-contrast](/assets/image-capture-preprocessing/preprocessing-contrast.png)
 
 *Figure 20. Effect of contrast enhancement and background correction on a simulated curved part with a faint stain and a thin scratch, where (b) and (c) enhance the visible contrast but keep the shading, and (d) removes the shading so that one fixed threshold (e) finds both defects. The images in this example were simulated using Python and OpenCV.*
 
@@ -86,7 +86,7 @@ This threshold also marks 4.2% of the good surface, but almost all of these fals
 
 Many industrial surfaces carry a regular pattern (e.g., woven fabric, machined grooves, printed rasters or the pixel grid of a display), and their texture is often much stronger than the defects. The Fourier transform represents an image as a sum of sinusoidal patterns. A periodic texture concentrates its energy in a few sharp peaks of the Fourier spectrum, while a local defect spreads its energy over many frequencies [119]. Therefore, a notch filter that removes the texture peaks, followed by the inverse transform, suppresses the regular texture and preserves the defects. Tsai and Hsieh used this idea for the inspection of fabrics, machined surfaces and wood by detecting the high-energy frequency components of the directional texture, setting them to zero and transforming the image back. In the restored image, the homogeneous texture became nearly uniform, while the defects stayed visible and could be found with simple statistical control limits [135]. Similar Fourier, Gabor and wavelet methods are a classic family in fabric inspection [17], and they are discussed further as texture features in step (5).
 
-[![preprocessing-texture](assets/image-capture-preprocessing/preprocessing-texture.png)](assets/preprocessing-texture.png)
+![preprocessing-texture](/assets/image-capture-preprocessing/preprocessing-texture.png)
 
 *Figure 21. Removal of a periodic fabric texture in the Fourier domain on a simulated woven fabric with a slub and a small hole, where the texture peaks marked in (b) are removed to obtain (c). The images in this example were simulated using Python and NumPy.*
 
@@ -102,7 +102,7 @@ The geometric part of pre-processing applies the results of step (2) and aligns 
 
 Alignment (also termed image registration) estimates the transformation between an image and a reference, and it is required whenever the analysis compares an image with a golden template, i.e., an image of a known good part. This referential approach is one of the classic methods of PCB inspection, where the test image is subtracted from a registered reference image so that the differences reveal missing or extra copper [137]. Three families of methods are common. First, phase correlation estimates a shift from the phase of the cross-power spectrum of the two images, and the Fourier-Mellin extension recovers rotation and scale in the same way [138]. Second, the enhanced correlation coefficient (ECC) method iteratively estimates a translation, Euclidean, affine or projective transformation with sub-pixel accuracy, and it is invariant to changes in brightness and contrast, which suits industrial images with slowly drifting lights [139]. Third, feature based methods match distinctive points between the images and fit a transformation to them [120, 93]. Note that this fine registration assumes that the part has already been found approximately in the image. Finding the part, its region of interest and its pose in the first place is the task of step (4).
 
-[![preprocessing-alignment](assets/image-capture-preprocessing/preprocessing-alignment.png)](assets/preprocessing-alignment.png)
+![preprocessing-alignment](/assets/image-capture-preprocessing/preprocessing-alignment.png)
 
 *Figure 22. Effect of image alignment on a golden-template comparison of a simulated circuit board with a solder bridge and an open trace, where the difference without alignment (c) is dominated by edges and the difference after ECC alignment (d) shows only the two defects. The images in this example were simulated using Python and OpenCV.*
 
@@ -126,7 +126,7 @@ The process starts with a crop box (also termed a pass-through filter), which ke
 
 Note that density based filters only remove points that are isolated in space, while an outlier close to the surface has as many neighbors as a good point. In such cases, a surface-aware filter is more effective, e.g., one that fits a local plane to the neighbors of each point and removes points that lie too far from it. As in 2D, every 3D filter has a scale (i.e., the number of neighbors, the radius or the voxel size), and that scale must be smaller than the smallest defect to be measured.
 
-[![preprocessing-pointcloud](assets/image-capture-preprocessing/preprocessing-pointcloud.png)](assets/preprocessing-pointcloud.png)
+![preprocessing-pointcloud](/assets/image-capture-preprocessing/preprocessing-pointcloud.png)
 
 *Figure 23. Effect of point cloud pre-processing on a simulated laser scan of a flat plate with a 100 µm dent, where statistical outlier removal (b) removes most outliers, and a crop box, a voxel grid and a plane-residual filter (d) remove the rest and reduce the noise. The images in this example were simulated using Python and SciPy.*
 

@@ -12,7 +12,7 @@ Illumination is the most powerful design tool in AVI because the same part can s
 
 Coaxial lighting sends the light along the optical axis through a beam splitter, which makes flat mirror-like surfaces bright and reveals marks on them [54]. A diffuse dome surrounds the part with light from all directions. On the one hand, it suppresses glare and shadows on curved, shiny or multi-faceted parts. On the other hand, it also lowers the contrast of edges and fine textures [55]. Finally, structured lighting projects lines or patterns. Deformation of those lines or patterns encodes the shape of the part. This is the basis of the 3D methods described at the end of this section [56, 57]. Figure 12 summarizes these basic illumination geometries.
 
-![lighting-geometries](assets/image-capture-preprocessing/lighting-geometries.png)
+![lighting-geometries](/assets/image-capture-preprocessing/lighting-geometries.png)
 
 *Figure 12. Basic illumination geometries, where the positions of the light and the camera decide whether a defect appears dark, bright or as a shift in a projected line. Image generated using Claude.*
 
@@ -39,7 +39,7 @@ Typical InGaAs (indium gallium arsenide) cameras operate in the short-wave infra
 
 Further into the infrared, thermal cameras do not need a light source at all, due to the fact that they record the heat radiation emitted by the part itself. They operate in the mid-wave (MWIR, about 3 to 5 µm) or long-wave (LWIR, about 8 to 14 µm) infrared [71]. Thermal imaging can inspect processes that leave a heat signature, e.g., heat seals under opaque caps or hot-glue joints [71, 72]. For instance, in one industrial case study, thermal images of bottle caps taken right after sealing were classified by a neural network, which detected defective seals that were invisible from the outside [72]. At the other end of the spectrum, X-ray imaging records how strongly each part of the product absorbs X-rays, i.e., it measures density rather than surface appearance. Therefore, X-ray inspection is used to find dense foreign bodies inside packed food, e.g., glass, stone, bone and metal [73].
 
-![spectrum-applications](assets/image-capture-preprocessing/spectrum-applications.png)
+![spectrum-applications](/assets/image-capture-preprocessing/spectrum-applications.png)
 
 *Figure 13. Typical AVI applications per spectral band together with the camera sensors and the illumination available on the industrial market, where the bars show the useful wavelength range of each item. Image generated using Claude.*
 
@@ -65,7 +65,7 @@ Finally, the camera interface must carry the data rate to the processor over the
 
 On a production line, the camera must capture each part at the "right" moment and without motion blur. This is achieved with a hardware trigger chain, as shown in Figure 14. The chain starts when a part-present sensor (e.g., a light barrier) or an encoder detects the part. Afterwards, following a programmable delay that lets the part move into the FOV, a trigger signal starts the camera exposure, and the same trigger fires a short strobe pulse from the light. Thereafter, the sensor is read out and the image is transferred to the processor, while the next part approaches. Hardware triggers are preferred over software triggers because they have short and repeatable delays, i.e., the part always appears at the same position in the image.
 
-![trigger-strobe-timing](assets/image-capture-preprocessing/trigger-strobe-timing.png)
+![trigger-strobe-timing](/assets/image-capture-preprocessing/trigger-strobe-timing.png)
 
 *Figure 14. Timing of a hardware-triggered capture with strobe lighting, where the short strobe pulse inside the exposure window defines the effective exposure time.*
 

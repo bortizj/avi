@@ -42,7 +42,7 @@ Dimensional measurement locates the edges of a part and computes distances, diam
 
 Every measurement has an uncertainty, which combines the repeatability of the measurement, the uncertainty of the calibration of step (2) and the effects of the part and the environment [111]. This uncertainty matters most when a measured value is close to a tolerance limit. ISO 14253-1 defines decision rules for this situation [203], and the JCGM guide on conformity assessment explains how the acceptance limits can be moved inside the tolerance by a guard band. That is, the probability of accepting a nonconforming part (the consumer's risk) is reduced at the cost of rejecting more conforming parts (the producer's risk) [199]. In AVI, parts measured inside the guard band are typically sent to Review in step (6) rather than rejected outright. Additionally, the measurement system as a whole is qualified with a Gage R&R study, and its resolution should be at least one tenth of the tolerance, as discussed in step (2) [48].
 
-[![classical-measurement](assets/anomaly-detection/classical-measurement.png)](assets/anomaly-detection/classical-measurement.png)
+![classical-measurement](/assets/anomaly-detection/classical-measurement.png)
 
 *Figure 28. Width measurement of a simulated backlit tab with a pixel size of 0.05 mm, where the sub-pixel gradient maximum (b) is about ten times more repeatable than the pixel-level edge, and the guard bands (c) and (d) trade escapes for Review decisions. The images in this example were simulated using Python, NumPy and SciPy.*
 
@@ -62,7 +62,7 @@ $$|I(x, y) - \mu(x, y)| > \max\big(a,\; b \cdot \sigma(x, y)\big).$$
 
 The absolute threshold $a$ sets the smallest contrast that counts as a defect on flat stable areas, and the factor $b$ widens the tolerance in proportion to the natural variation, e.g., along edges and in printed areas. Note that this widening has a price: a defect that lies exactly on an edge must have a larger contrast to be detected than the same defect on a flat area.
 
-[![classical-variation-model](assets/anomaly-detection/classical-variation-model.png)](assets/anomaly-detection/classical-variation-model.png)
+![classical-variation-model](/assets/anomaly-detection/classical-variation-model.png)
 
 *Figure 29. Golden-template comparison on a simulated part with a scratch, a bright spot, an edge notch and a gap in the print, where a fixed difference threshold (c) produces many false alarms along the edges and the variation model (d) finds only the four defects. The images in this example were simulated using Python, OpenCV and SciPy.*
 
@@ -98,7 +98,7 @@ The performance on the original benchmark has nearly saturated. For instance, th
 
 Finally, vision-language models open a new direction, i.e., zero-shot anomaly detection without any training images of the product. WinCLIP compares image windows at several scales with text prompts that describe normal and damaged objects, and it reached 91.8% image-level AUROC on MVTec AD without any training image of the category [220], while AnomalyCLIP learns object-agnostic prompts that transfer across product types [221]. Such models (like the foundation models of step (4)) are mainly useful in the model sandbox (S) for prototyping and for pre-sorting images for labeling, while production systems still rely on models trained and validated on the actual parts. Open-source libraries (e.g., Anomalib) provide implementations of many of these methods with common benchmarks and deployment tools [222].
 
-[![learned-anomaly-detection](assets/anomaly-detection/learned-anomaly-detection.png)](assets/anomaly-detection/learned-anomaly-detection.png)
+![learned-anomaly-detection](/assets/anomaly-detection/learned-anomaly-detection.png)
 
 *Figure 30. Supervised defect detection and anomaly detection on a simulated brushed metal surface, where the supervised classifier (b) marks the scratch it was trained on but responds weakly to a stain and a pit, while the anomaly map (c) marks all three defects. The images in this example were simulated using Python, SciPy and scikit-learn.*
 
@@ -130,7 +130,7 @@ The most complete 3D inspection compares the measured point cloud with the CAD m
 
 However, the alignment is not a neutral pre-processing step, since it decides what the deviation map shows. On the one hand, a best-fit alignment (e.g., ICP over all points) minimizes the deviations over the whole part, and therefore it spreads a global error such as warping over the whole surface. On the other hand, a datum alignment places the part as the drawing defines it, i.e., relative to the datum features or datum targets that represent how the part is located in its assembly [227]. Note that tolerances on a drawing refer to these datums [202]. Therefore, the alignment must follow the datum system of the drawing whenever the deviation map is used for a conformity decision, while a best-fit alignment is useful to judge the shape of a part independently of its location.
 
-[![cad-deviation-map](assets/anomaly-detection/cad-deviation-map.png)](assets/anomaly-detection/cad-deviation-map.png)
+![cad-deviation-map](/assets/anomaly-detection/cad-deviation-map.png)
 
 *Figure 31. Deviation maps of the same simulated scan of a warped plate with a dent and a low boss, where the best-fit alignment (b) spreads the warp over the part and the datum alignment on three targets at the clamped end (c) shows it at the free end. The images in this example were simulated using Python, NumPy and SciPy.*
 

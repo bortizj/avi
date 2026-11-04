@@ -21,7 +21,7 @@ Calibration in AVI covers six groups of parameters, which are summarized in the 
 
 The basis of geometric calibration is the pinhole camera model, in which every 3D point is projected through a single center onto the image plane [93]. This model has two sets of parameters. On the one hand, the intrinsic parameters describe the camera itself, i.e., the focal length in pixels, the principal point (where the optical axis meets the sensor) and the lens distortion. On the other hand, the extrinsic parameters describe the pose, i.e., the rotation and translation of the camera relative to a world coordinate system [92, 93]. The Figure 15 shows this model.
 
-![calibration-geometry](assets/image-capture-preprocessing/pinhole-camera-model.png)
+![calibration-geometry](/assets/image-capture-preprocessing/pinhole-camera-model.png)
 
 *Figure 15. Parameters of the pinhole camera model, where (a) shows the intrinsic parameters, i.e., the focal length, the principal point and the lens distortion, and (b) the extrinsic parameters, i.e., the rotation and translation of the camera relative to the world coordinate system.*
 
@@ -39,7 +39,7 @@ Three types of planar targets are common. (i) Checkerboards provide corners that
 
 In practice, good calibration images are acquired by applying the following steps. First, we fix the final focus and aperture. We also mount any filters or protective windows because changing them afterwards changes the calibration [95, 109]. Second, we capture the target at the working distance in many positions. This should cover every part of the FOV at least once and in several orientations [95]. The required number of views depends on the target and the software. For instance, OpenCV recommends at least 10 images [94], while HALCON asks for at least 15 images [95]. Third, we check the image quality, i.e., the target must be sharp, evenly lit and not overexposed. For example, HALCON recommends marks of at least 20 pixels in diameter and a contrast of at least 100 gray values in 8-bit images [95]. Finally, the images are saved uncompressed and without pre-processing because compression artifacts and filters shift the detected points [95].
 
-![calibration-geometry](assets/image-capture-preprocessing/calibration-geometry.png)
+![calibration-geometry](/assets/image-capture-preprocessing/calibration-geometry.png)
 
 *Figure 16. Effect of geometric calibration on a simulated camera with strong barrel distortion, where (a) is the captured image, (b) the image after distortion correction, and (c) the image rectified to the measurement plane with a known scale in millimeters. The images in this example were simulated using Python and OpenCV.*
 
@@ -75,7 +75,7 @@ $$I_{\text{corr}} = \frac{I - D}{F - D} \cdot \overline{(F - D)},$$
 
 where the bar denotes the mean over the image. Note that many line-scan and area-scan cameras are able to perform this correction internally [98].
 
-![calibration-flatfield](assets/image-capture-preprocessing/calibration-flatfield.png)
+![calibration-flatfield](/assets/image-capture-preprocessing/calibration-flatfield.png)
 
 *Figure 17. Effect of dark-frame and flat-field correction on a simulated surface with a faint stain and a thin scratch, where the same fixed threshold fails on the captured image (d) and works on the corrected image (e). The images in this example were simulated using Python and OpenCV.*
 
@@ -85,7 +85,7 @@ Figure 17 shows the effect in a simulated example. A brushed metal surface with 
 
 When color itself is the inspection target, the camera must also be color calibrated, e.g., for sorting produce by ripeness or for checking the shade of painted parts. The colors recorded by a camera depend on the spectral sensitivity of its sensor, the spectrum of the light and the internal processing of the camera. Therefore, the same red part can give different RGB values on two cameras or under two lighting conditions. Color calibration first sets a fixed white balance on a neutral reference and then maps the camera values to a device-independent color space, e.g., CIE XYZ or CIELAB. This is done using a reference chart with patches of known color such as the 24-patch color chart introduced by McCamy et al. [100]. The simplest and most widely used mapping is a 3 × 3 color correction matrix fitted by least squares to the linear camera values of the chart. The result is evaluated with a color-difference formula, i.e., the CIEDE2000 difference $ΔE00$ computed for each patch between the corrected color and the reference color [101]. The acceptable color tolerance must be agreed with the customer for each product.
 
-![calibration-color](assets/image-capture-preprocessing/calibration-color.png)
+![calibration-color](/assets/image-capture-preprocessing/calibration-color.png)
 
 *Figure 18. Effect of color calibration on a simulated camera under warm LED light, where a 3 × 3 color correction matrix fitted to a generic 24-patch reference chart reduces the color error of most patches below the example tolerance. The images in this example were simulated using Python and OpenCV.*
 
